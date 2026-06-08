@@ -1,152 +1,275 @@
 {
   "basics": {
-    "name": "Your Sidebar Name",
-    "email": "none@example.org",
-    "phone": "",
-    "website": "https://academicpages.github.io",
-    "summary": "Currently employed at Red Brick University. Short biography for the left-hand sidebar",
+    "name": "Yulin (Frank) Zhang",
+    "label": "Computer Science and Mathematics Undergraduate",
+    "email": "frank.zhang@duke.edu",
+    "phone": "(949) 866-0320",
+    "website": "https://frankyzha.github.io",
+    "summary": "Duke undergraduate studying Computer Science and Mathematics, with research and engineering experience in machine learning, NLP, interpretability, AI safety, and secure software systems.",
     "location": {
       "address": "",
       "postalCode": "",
-      "city": "Earth",
+      "city": "Durham",
       "countryCode": "US",
-      "region": ""
+      "region": "NC"
     },
     "profiles": [
       {
-        "network": "Google Scholar",
-        "username": "",
-        "url": "https://scholar.google.com/citations?user=PS_CX0AAAAAJ"
-      },
-      {
-        "network": "ORCID",
-        "username": "",
-        "url": "http://orcid.org/yourorcidurl"
-      },
-      {
         "network": "GitHub",
-        "username": "academicpages",
-        "url": "https://github.com/academicpages"
+        "username": "frankyzha",
+        "url": "https://github.com/frankyzha"
+      },
+      {
+        "network": "LinkedIn",
+        "username": "yulin-frank-zhang",
+        "url": "https://www.linkedin.com/in/yulin-frank-zhang/"
       }
     ]
   },
-  "work": [],
-  "education": [
+  "work": [
     {
-      "institution": "GitHub University",
-      "area": "Ph.D in Version Control Theory",
-      "studyType": "",
-      "startDate": "",
-      "endDate": "2018",
-      "gpa": null,
-      "courses": []
+      "company": "Baidu",
+      "position": "ML Engineer Intern",
+      "startDate": "2025",
+      "endDate": "Summer 2025",
+      "summary": "Built computer-vision systems for industrial safety analytics.",
+      "highlights": [
+        "Implemented real-time multi-object detection pipelines in PyTorch and PaddleDetection using YOLOv11 to identify safety-critical items and human behaviors in industrial video streams.",
+        "Integrated ByteTrack, BotSort with ReID, and related methods to track objects through occlusions, detect wrong-way movement, and deliver automated safety alerts and behavior analytics."
+      ]
     },
     {
-      "institution": "GitHub University",
-      "area": "M.S. in Jekyll",
-      "studyType": "",
-      "startDate": "",
-      "endDate": "2014",
-      "gpa": null,
-      "courses": []
+      "company": "Scale AI",
+      "position": "GenAI Technical Trainer",
+      "startDate": "2024",
+      "endDate": "Present",
+      "summary": "Trains and evaluates generative AI systems through RLHF, code reasoning, localization, and safety-alignment workflows.",
+      "highlights": [
+        "Trained LLMs via RLHF to reduce hallucinations, improve localization, and align multilingual AI responses with prompt intent across culture, math, and coding.",
+        "Wrote efficient programs that outperform LLM code responses in code generation, reasoning, and refactoring.",
+        "Rated and edited generated text to improve response accuracy and safety alignment."
+      ]
     },
     {
-      "institution": "GitHub University",
-      "area": "B.S. in GitHub",
-      "studyType": "",
-      "startDate": "",
-      "endDate": "2012",
-      "gpa": null,
-      "courses": []
+      "company": "DukeNLP Lab",
+      "position": "Developer & Research Assistant",
+      "startDate": "2025",
+      "endDate": "Present",
+      "summary": "Evaluates AI search agents under lazy-search and search-time contamination settings.",
+      "highlights": [
+        "Evaluated agents such as Gemini Deep Research by rewriting benchmark questions and measuring robustness against injected distracting rewritten question-answer pairs."
+      ]
+    },
+    {
+      "company": "Interpretable Machine Learning Lab",
+      "position": "Research Assistant",
+      "startDate": "2026",
+      "endDate": "Present",
+      "summary": "Works on interpretable and efficient decision-tree methods.",
+      "highlights": [
+        "Designed algorithms for multiway-split decision trees using LightGBM preprocessing and an improved SPLIT framework to reduce depth, optimize decision sparsity, and improve expressivity, accuracy, and performance."
+      ]
+    },
+    {
+      "company": "CS+ Program",
+      "position": "Research Intern",
+      "startDate": "2026",
+      "endDate": "Present",
+      "summary": "Studies internal concept representations in LLMs.",
+      "highlights": [
+        "Studying how LLMs form callable internal representations of concepts to provide a mechanistic interpretation of grokking and compression."
+      ]
+    },
+    {
+      "company": "Michigan Institute for Data and AI in Society",
+      "position": "Research Assistant",
+      "startDate": "2024",
+      "endDate": "2026",
+      "summary": "Researched Android app security, malware detection, and app-longevity prediction.",
+      "highlights": [
+        "Investigated secure Android app use with VirusTotal, Quark-Engine, and custom ML classifiers built on XGBoost, ExcelFormer, and Trompt.",
+        "Trained an XGBoost model to predict whether an app would be removed from a web store, achieving 80%+ accuracy.",
+        "Created and validated extensive datasets with VirusTotal and Quark-Engine scan analysis results."
+      ]
+    },
+    {
+      "company": "Living Systems Research Lab, University of Michigan",
+      "position": "Research Assistant",
+      "startDate": "2025",
+      "endDate": "Spring 2025",
+      "summary": "Modeled dynamic cellular movement and biological pattern formation.",
+      "highlights": [
+        "Animated biological phenomena such as morphogenesis, tissue growth, and pattern formation in MATLAB and Python.",
+        "Simulated complex biophysical processes based on tissue forces and tensions."
+      ]
+    },
+    {
+      "company": "Columbia University Data Science Institute",
+      "position": "Research Intern",
+      "startDate": "2024",
+      "endDate": "Summer 2024",
+      "summary": "Modeled car-crash casualty estimates for medical resource allocation.",
+      "highlights": [
+        "Trained robust polynomial regression models in R to predict mean casualties from factors such as driver's age and lighting conditions, minimizing mean bias to 0.12 people per accident."
+      ]
+    },
+    {
+      "company": "SoftCom Lab, Cal State Polytechnic University",
+      "position": "Research Intern",
+      "startDate": "2020",
+      "endDate": "2023",
+      "summary": "Built NLP-powered software for reducing digital distractions.",
+      "highlights": [
+        "Developed Concentration, a Chrome extension using NLP, LLMs, Flask, and Firebase that reached 2.2K+ users and a 4.6/5 Chrome Web Store rating.",
+        "Filed provisional patent application 63/383,080 for the website-blocking algorithm.",
+        "Published and presented the related paper as lead author at the 9th International Conference on Software Engineering in Copenhagen, Denmark."
+      ]
     }
   ],
-  "skills": [],
+  "education": [
+    {
+      "institution": "Duke University",
+      "area": "B.S. in Computer Science and Mathematics",
+      "studyType": "",
+      "startDate": "",
+      "endDate": "Expected May 2028",
+      "gpa": "4.0/4.0",
+      "courses": [
+        "Graduate Machine Learning (A+)",
+        "Graduate Deep Learning (A)",
+        "Graduate Real Analysis (A)"
+      ]
+    },
+    {
+      "institution": "University of Michigan",
+      "area": "B.S. in Computer Science and Mathematics, Honors Program",
+      "studyType": "",
+      "startDate": "2024",
+      "endDate": "2025",
+      "gpa": "4.0/4.0",
+      "courses": [
+        "Programming & Data Structures (A+)",
+        "Probability Theory (A+)",
+        "Honors Multivariable Calculus (A+)"
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "name": "Programming Languages",
+      "keywords": [
+        "Python",
+        "R",
+        "C++",
+        "Java",
+        "JavaScript",
+        "HTML & CSS",
+        "SQL"
+      ]
+    },
+    {
+      "name": "Machine Learning",
+      "keywords": [
+        "Deep learning frameworks",
+        "ML interpretability",
+        "NLP",
+        "Computer vision",
+        "RLHF",
+        "LLM evaluation"
+      ]
+    },
+    {
+      "name": "Software and Security",
+      "keywords": [
+        "Backend development",
+        "Cybersecurity",
+        "Google Cybersecurity Professional Certificate",
+        "Android app security",
+        "Data pipelines"
+      ]
+    }
+  ],
   "languages": [],
-  "interests": [],
+  "interests": [
+    {
+      "name": "Research Interests",
+      "keywords": [
+        "Machine learning",
+        "Natural language processing",
+        "Interpretability",
+        "AI safety",
+        "Secure software systems"
+      ]
+    }
+  ],
   "references": [],
   "publications": [
     {
-      "name": "Paper Title Number 1",
-      "publisher": "Journal 1",
-      "releaseDate": "2009-10-01",
-      "website": "http://academicpages.github.io/files/paper1.pdf",
-      "summary": "This paper is about the number 1. The number 2 is left for future work."
+      "name": "Lazy Grounding: When Search Agents Misapply True Evidence",
+      "publisher": "Submitted to EMNLP 2026",
+      "releaseDate": "2026",
+      "website": "",
+      "summary": "Zhang, Y.; Huang, Y.; Chen, S.; Lin, T.; Yang, Z.; Yin, X.; Dhingra, B."
     },
     {
-      "name": "Paper Title Number 2",
-      "publisher": "Journal 1",
-      "releaseDate": "2010-10-01",
-      "website": "http://academicpages.github.io/files/paper2.pdf",
-      "summary": "This paper is about the number 2. The number 3 is left for future work."
+      "name": "Interpretable Multiway-Split Trees",
+      "publisher": "Submitted to NeurIPS 2026",
+      "releaseDate": "2026",
+      "website": "",
+      "summary": "Chi, B.*; Zhang, Y.*; Zhong, C.; Rudin, C. *Equal contribution."
     },
     {
-      "name": "Paper Title Number 3",
-      "publisher": "Journal 1",
-      "releaseDate": "2015-10-01",
-      "website": "http://academicpages.github.io/files/paper3.pdf",
-      "summary": "This paper is about the number 3. The number 4 is left for future work."
+      "name": "An NLP-Learning Powered Customizable Approach Towards Auto-Blocking Distracting Websites",
+      "publisher": "Conference paper",
+      "releaseDate": "2023",
+      "website": "https://doi.org/10.5121/csit.2023.130209",
+      "summary": "Zhang, Y.; Sun, Y."
     },
     {
-      "name": "Paper Title Number 4",
-      "publisher": "GitHub Journal of Bugs",
-      "releaseDate": "2024-02-17",
-      "website": "http://academicpages.github.io/files/paper3.pdf",
-      "summary": "This paper is about fixing template issue #693."
+      "name": "Rebuilding a Balanced Dataset of Removed and Non-Removed Android Apps Using VirusTotal and Quark Features",
+      "publisher": "Submitted",
+      "releaseDate": "",
+      "website": "",
+      "summary": "Mohsen, Fadi; Zhang, Y.; Bisgin, H.; Buchta, K."
+    },
+    {
+      "name": "Beyond XGBoost: Predicting App Longevity in Google Play with ExcelFormer and Trompt",
+      "publisher": "Submitted",
+      "releaseDate": "",
+      "website": "",
+      "summary": "Bisgin, H.; Buchta, K.; Zhang, Y.; Mohsen, Fadi."
     }
   ],
-  "presentations": [
-    {
-      "name": "Talk 1 on Relevant Topic in Your Field",
-      "event": "UC San Francisco, Department of Testing",
-      "date": "2012-03-01",
-      "location": "San Francisco, CA, USA",
-      "description": ""
-    },
-    {
-      "name": "Tutorial 1 on Relevant Topic in Your Field",
-      "event": "UC-Berkeley Institute for Testing Science",
-      "date": "2013-03-01",
-      "location": "Berkeley, CA, USA",
-      "description": ""
-    },
-    {
-      "name": "Talk 2 on Relevant Topic in Your Field",
-      "event": "London School of Testing",
-      "date": "2014-02-01",
-      "location": "London, UK",
-      "description": ""
-    },
-    {
-      "name": "Conference Proceeding talk 3 on Relevant Topic in Your Field",
-      "event": "Testing Institute of America 2014 Annual Conference",
-      "date": "2014-03-01",
-      "location": "Los Angeles, CA, USA",
-      "description": ""
-    }
-  ],
-  "teaching": [
-    {
-      "course": "Teaching experience 1",
-      "institution": "University 1, Department",
-      "date": "2014-01-01",
-      "role": "Undergraduate course",
-      "description": ""
-    },
-    {
-      "course": "Teaching experience 2",
-      "institution": "University 1, Department",
-      "date": "2015-01-01",
-      "role": "Workshop",
-      "description": ""
-    }
-  ],
+  "presentations": [],
+  "teaching": [],
   "portfolio": [
     {
-      "name": "Portfolio item number 1",
-      "category": "portfolio",
-      "date": "",
+      "name": "MHacks 2024: MentalAI",
+      "category": "project",
+      "date": "2024-09",
       "url": "",
-      "description": "Short description of portfolio item number 1<br/><img src='/images/500x300.png'>"
+      "description": "Led a team of 4 to fine-tune GPT-4o mini for mental health support; built the frontend with React, TypeScript, Tailwind CSS, MongoDB, and the OpenAI API."
+    },
+    {
+      "name": "Email Automation Service Development",
+      "category": "project",
+      "date": "2022",
+      "url": "",
+      "description": "Built an open-source timed email delivery service with 25K+ downloads, attachment and embedded-image support, custom fonts, and 30% lower latency through persistent SMTP connections."
+    },
+    {
+      "name": "Web Crawler Development for Uni Good News",
+      "category": "project",
+      "date": "2022",
+      "url": "",
+      "description": "Built a multithreaded crawler that downloaded 1K+ news articles and checked daily for new content to support offline access for Uni Good News visitors."
+    },
+    {
+      "name": "Concentration Chrome Extension",
+      "category": "project",
+      "date": "2020",
+      "url": "",
+      "description": "Developed an NLP-powered Chrome extension with a Flask backend and Firebase database to auto-block distracting websites; reached 2.2K+ users and a 4.6/5 Chrome Web Store rating."
     }
   ]
 }
