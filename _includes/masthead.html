@@ -1,16 +1,17 @@
 {% include base_path %}
+{% assign asset_version = site.github.build_revision | default: site.time | url_encode %}
 
 <div class="masthead">
   <div class="masthead__inner-wrap">
     <div class="masthead__menu">
       <nav id="primary-nav" class="site-nav" aria-label="Primary navigation">
-        <a class="site-nav__brand" href="{{ '/' | relative_url }}" aria-label="{{ site.title }} — home">Frank Zhang <span aria-hidden="true">/</span></a>
+        <a class="site-nav__brand" href="{{ '/' | relative_url }}?v={{ asset_version }}" aria-label="{{ site.title }} — home">Frank Zhang <span aria-hidden="true">/</span></a>
         <ul class="site-nav__links" id="primary-nav-links">
           {% for link in site.data.navigation.main %}
             {% if link.url contains 'http' %}
               <li><a href="{{ link.url }}">{{ link.title }}</a></li>
             {% else %}
-              <li><a href="{{ link.url | relative_url }}">{{ link.title }}</a></li>
+              <li><a href="{{ link.url | relative_url }}?v={{ asset_version }}">{{ link.title }}</a></li>
             {% endif %}
           {% endfor %}
         </ul>

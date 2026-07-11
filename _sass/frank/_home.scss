@@ -22,7 +22,8 @@
 
 .landing__identity {
   display: flex;
-  grid-row: 1 / 3;
+  grid-row: 1;
+  align-self: center;
   flex-direction: column;
   justify-content: center;
   padding: clamp(4rem, 10vh, 8rem) clamp(2rem, 5vw, 5rem) clamp(4rem, 8vh, 7rem) 0;
@@ -52,7 +53,7 @@
 }
 
 .landing__pitch {
-  align-self: end;
+  align-self: center;
   padding: 2rem 0 2rem clamp(1.5rem, 3vw, 2.75rem);
   border-left: 2px solid var(--frank-rule);
 }

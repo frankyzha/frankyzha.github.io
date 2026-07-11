@@ -1,6 +1,7 @@
 {% include base_path %}
+{% assign asset_version = site.github.build_revision | default: site.time | url_encode %}
 {% for link in site.data.navigation.main %}
   {% unless link.url contains 'http' %}
-    <link rel="prefetch" href="{{ link.url | relative_url }}">
+    <link rel="prefetch" href="{{ link.url | relative_url }}?v={{ asset_version }}">
   {% endunless %}
 {% endfor %}
