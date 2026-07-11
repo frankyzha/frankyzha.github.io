@@ -54,8 +54,8 @@
   width: 100%;
   max-width: $frank-post-width;
   float: none;
-  margin: 0 auto;
-  padding: clamp(3rem, 7vw, 5rem) 0 4rem;
+  margin: 0 auto 0 max(2rem, calc(50vw - 540px));
+  padding: clamp(1rem, 2vw, 1.5rem) 0 4rem;
 }
 
 .page--post {
@@ -146,6 +146,7 @@
   display: block;
   margin-top: 0.85rem;
   color: var(--frank-ink);
+  font-size: 12px;
 }
 
 .citation {
@@ -200,8 +201,8 @@
 
 .floating-toc {
   position: fixed;
-  top: 28%;
-  left: max(1rem, calc(50vw - 650px));
+  top: 8rem;
+  left: max(1rem, calc(50vw - 700px));
   z-index: 18;
 }
 
