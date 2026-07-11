@@ -131,7 +131,7 @@
 }
 
 .post-header {
-  margin-bottom: 3rem;
+  margin-bottom: 1.75rem;
   padding-bottom: 1.8rem;
   border-bottom: 2px solid var(--frank-rule);
 
@@ -245,8 +245,9 @@
 
 .floating-toc__panel {
   position: absolute;
-  top: calc(100% + 0.5rem);
-  left: 0;
+  top: 0;
+  right: calc(100% + 0.5rem);
+  left: auto;
   width: 250px;
   max-height: min(62vh, 480px);
   padding: 0.8rem;
@@ -258,7 +259,7 @@
   box-shadow: none;
   opacity: 0;
   pointer-events: none;
-  transform: translateY(-5px);
+  transform: translateX(5px);
   transition: opacity 120ms linear, transform 120ms linear;
 }
 
