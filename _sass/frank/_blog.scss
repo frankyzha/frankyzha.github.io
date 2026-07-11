@@ -244,10 +244,11 @@
 }
 
 .floating-toc__panel {
-  position: absolute;
-  top: 0;
-  right: calc(100% + 0.5rem);
-  left: auto;
+  position: fixed;
+  top: 10.875rem;
+  right: auto;
+  // Article half-width (360px) + panel (250px) + gutter (30px).
+  left: max(1rem, calc(50vw - 640px));
   width: 250px;
   max-height: min(62vh, 480px);
   padding: 0.8rem;
@@ -259,7 +260,7 @@
   box-shadow: none;
   opacity: 0;
   pointer-events: none;
-  transform: translateX(5px);
+  transform: translateY(-5px);
   transition: opacity 120ms linear, transform 120ms linear;
 }
 

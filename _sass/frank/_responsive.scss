@@ -1,4 +1,4 @@
-@media (max-width: $frank-tablet) {
+@media (max-width: 1280px) {
   .floating-toc {
     top: auto;
     bottom: 1rem;
@@ -6,6 +6,7 @@
   }
 
   .floating-toc__panel {
+    position: absolute;
     top: auto;
     right: auto;
     bottom: calc(100% + 0.5rem);
