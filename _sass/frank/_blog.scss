@@ -54,7 +54,7 @@
   width: 100%;
   max-width: $frank-post-width;
   float: none;
-  margin: 0 auto 0 max(2rem, calc(50vw - 540px));
+  margin: 0 auto;
   padding: clamp(1rem, 2vw, 1.5rem) 0 4rem;
 }
 
@@ -202,7 +202,7 @@
 .floating-toc {
   position: fixed;
   top: 8rem;
-  left: max(1rem, calc(50vw - 700px));
+  left: max(1rem, calc(50vw - 520px));
   z-index: 18;
 }
 
