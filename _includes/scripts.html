@@ -1,7 +1,8 @@
+{% assign asset_version = site.github.build_revision | default: site.time | url_encode %}
 {% if page.id or page.url == '/markdown/' %}{% include scripts/mathjax.html %}{% endif %}
 {% if page.url == '/markdown/' %}{% include scripts/diagrams.html %}{% endif %}
-<script defer src="{{ '/assets/js/theme-toggle.js' | relative_url }}?v=3"></script>
-<script type="module" src="{{ '/assets/js/site.js' | relative_url }}"></script>
-{% if page.id %}<script type="module" src="{{ '/assets/js/post.js' | relative_url }}"></script>{% endif %}
+<script defer src="{{ '/assets/js/theme-toggle.js' | relative_url }}?v={{ asset_version }}"></script>
+<script type="module" src="{{ '/assets/js/site.js' | relative_url }}?v={{ asset_version }}"></script>
+{% if page.id %}<script type="module" src="{{ '/assets/js/post.js' | relative_url }}?v={{ asset_version }}"></script>{% endif %}
 
 {% include analytics.html %}
