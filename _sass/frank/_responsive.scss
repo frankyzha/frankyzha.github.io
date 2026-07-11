@@ -28,8 +28,14 @@
     grid-template-rows: auto;
   }
 
-  .landing__identity {
+  .landing__identity,
+  .landing__pitch,
+  .landing__links {
+    grid-column: 1;
     grid-row: auto;
+  }
+
+  .landing__identity {
     min-height: 62svh;
     padding: 5rem 0 4rem;
 

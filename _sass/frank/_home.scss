@@ -22,6 +22,7 @@
 
 .landing__identity {
   display: flex;
+  grid-column: 1;
   grid-row: 1;
   align-self: center;
   flex-direction: column;
@@ -53,6 +54,8 @@
 }
 
 .landing__pitch {
+  grid-column: 2;
+  grid-row: 1;
   align-self: center;
   padding: 2rem 0 2rem clamp(1.5rem, 3vw, 2.75rem);
   border-left: 2px solid var(--frank-rule);
@@ -100,6 +103,8 @@
 
 .landing__links {
   display: grid;
+  grid-column: 2;
+  grid-row: 2;
   grid-template-columns: 1fr 1fr;
   border-left: 2px solid var(--frank-rule);
 
