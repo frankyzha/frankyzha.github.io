@@ -3,24 +3,35 @@
 <div class="masthead">
   <div class="masthead__inner-wrap">
     <div class="masthead__menu">
-      <nav id="site-nav" class="greedy-nav">
-        <button><div class="navicon"></div></button>
-        <ul class="visible-links">
-          <li class="masthead__menu-item masthead__menu-item--lg persist"><a href="{{ base_path }}/">{{ site.title }}</a></li>
+      <nav id="primary-nav" class="site-nav" aria-label="Primary navigation">
+        <a class="site-nav__brand" href="{{ '/' | relative_url }}" aria-label="{{ site.title }} — home">Frank Zhang <span aria-hidden="true">/</span></a>
+        <ul class="site-nav__links" id="primary-nav-links">
           {% for link in site.data.navigation.main %}
             {% if link.url contains 'http' %}
-              {% assign domain = '' %}
+              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
             {% else %}
-              {% assign domain = base_path %}
+              <li><a href="{{ link.url | relative_url }}">{{ link.title }}</a></li>
             {% endif %}
-            <li class="masthead__menu-item"><a href="{{ domain }}{{ link.url }}">{{ link.title }}</a></li>
           {% endfor %}
-          <li id="theme-toggle" class="masthead__menu-item persist tail">
-            <a role="button" aria-labelledby="theme-icon"><i id="theme-icon" class="fa-solid fa-sun" aria-hidden="true" title="toggle theme"></i></a>
-          </li>
         </ul>
-        <ul class="hidden-links hidden"></ul>
+        <button class="site-nav__toggle" id="primary-nav-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="primary-nav-links">
+          <span aria-hidden="true"><i></i><i></i><i></i></span>
+        </button>
       </nav>
+      <div class="theme-toggle">
+        <span class="theme-toggle__plug" aria-hidden="true">
+          <svg class="theme-toggle__icon theme-toggle__icon--unplugged" viewBox="0 0 28 24" focusable="false">
+            <path d="M2 8h7v8H2zM9 10h4M9 14h4M2 12H1M19 4v16M22 9v6" />
+          </svg>
+          <svg class="theme-toggle__icon theme-toggle__icon--plugged" viewBox="0 0 28 24" focusable="false">
+            <path d="M6 8h7v8H6zM13 10h6M13 14h6M6 12H2M19 4v16M22 9v6" />
+          </svg>
+        </span>
+        <input id="color-theme-toggle" class="theme-toggle__input" type="checkbox" aria-label="Use black theme">
+        <label class="theme-toggle__button" for="color-theme-toggle">
+          <span class="theme-toggle__white">White</span><span aria-hidden="true">/</span><span class="theme-toggle__black">Black</span>
+        </label>
+      </div>
     </div>
   </div>
 </div>

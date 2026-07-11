@@ -1,0 +1,11 @@
+{% if page.citation or page.paperurl or page.slidesurl or page.bibtexurl %}
+  <p class="page-resource-links">
+    {% if page.citation %}
+      Recommended citation: {{ page.citation }}{% if page.paperurl or page.slidesurl or page.bibtexurl %}<br>{% endif %}
+    {% endif %}
+    {% assign resource_separator = "" %}
+    {% if page.paperurl %}<a href="{{ page.paperurl }}">Download Paper</a>{% assign resource_separator = " | " %}{% endif %}
+    {% if page.slidesurl %}{{ resource_separator }}<a href="{{ page.slidesurl }}">Download Slides</a>{% assign resource_separator = " | " %}{% endif %}
+    {% if page.bibtexurl %}{{ resource_separator }}<a href="{{ page.bibtexurl }}">Download Bibtex</a>{% endif %}
+  </p>
+{% endif %}

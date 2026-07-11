@@ -7,7 +7,9 @@
 <div itemscope itemtype="http://schema.org/Person">
 
   <div class="author__avatar">
-    {% if author.avatar contains "://" %}
+    {% if author.avatar == "profile.png" %}
+      <div class="author__monogram" aria-hidden="true">FZ</div>
+    {% elsif author.avatar contains "://" %}
     	<img src="{{ author.avatar }}" alt="{{ author.name }}"  fetchpriority="high" />
     {% else %}
     	<img src="{{ author.avatar | prepend: "/images/" | prepend: base_path }}" class="author__avatar" alt="{{ author.name }}"  fetchpriority="high" />
@@ -21,8 +23,8 @@
   </div>
 
   <div class="author__urls-wrapper">
-    <button class="btn btn--inverse">Follow</button>
-    <ul class="author__urls social-icons">
+    <button class="btn btn--inverse" type="button" aria-expanded="false" aria-controls="author-links">Follow</button>
+    <ul class="author__urls social-icons" id="author-links">
       <!-- Font Awesome icons / Biographic information  -->
       {% if author.location %}
         <li class="author__desktop"><i class="fas fa-fw fa-location-dot icon-pad-right" aria-hidden="true"></i>{{ author.location }}</li>

@@ -1,0 +1,56 @@
+#main {
+  margin-top: 2.5rem;
+}
+
+.page__title {
+  color: var(--frank-ink);
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  font-weight: 800;
+  letter-spacing: -0.055em;
+  line-height: 1;
+}
+
+.page__content {
+  h2 {
+    color: var(--frank-ink);
+    border-bottom-color: var(--frank-rule);
+  }
+
+  a {
+    color: var(--frank-ink);
+    text-decoration-thickness: 1px;
+  }
+}
+
+.page-resource-links {
+  font-size: smaller;
+}
+
+.cv-pdf-page {
+  width: 100%;
+  height: calc(100vh - 70px);
+  min-height: 640px;
+  margin: 0;
+  padding: 0;
+  background: var(--frank-paper);
+}
+
+.cv-pdf-viewer {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.cv-pdf-fallback {
+  display: grid;
+  min-height: 60vh;
+  place-content: center;
+  color: var(--frank-ink);
+  text-align: center;
+
+  a {
+    color: var(--frank-ink);
+    font-weight: 700;
+  }
+}

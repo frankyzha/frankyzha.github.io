@@ -1,0 +1,6 @@
+{% include base_path %}
+{% for link in site.data.navigation.main %}
+  {% unless link.url contains 'http' %}
+    <link rel="prefetch" href="{{ link.url | relative_url }}">
+  {% endunless %}
+{% endfor %}

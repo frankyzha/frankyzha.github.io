@@ -1,0 +1,264 @@
+.masthead {
+  background: var(--frank-paper);
+  border-bottom: 2px solid var(--frank-rule);
+  box-shadow: none;
+
+  &::after {
+    display: none;
+  }
+}
+
+.masthead__inner-wrap {
+  padding-top: 0.65em;
+  padding-bottom: 0.65em;
+}
+
+.masthead__menu,
+.site-nav {
+  display: flex;
+  align-items: center;
+}
+
+.masthead__menu {
+  min-height: 32px;
+  gap: 1rem;
+  padding-right: 0;
+}
+
+.site-nav {
+  position: relative;
+  min-height: 32px;
+  min-width: 0;
+  flex: 1 1 auto;
+
+  a {
+    color: var(--frank-ink);
+    text-decoration: none;
+  }
+}
+
+.site-nav__brand {
+  display: inline-flex;
+  min-height: 32px;
+  flex: 0 0 auto;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1;
+
+  span {
+    color: var(--frank-ink);
+  }
+}
+
+.site-nav__links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin: 0 0 0 clamp(1rem, 2.5vw, 2rem) !important;
+  padding: 0 !important;
+  list-style: none;
+
+  li {
+    margin: 0;
+  }
+
+  a {
+    display: inline-flex;
+    min-height: 32px;
+    align-items: center;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    line-height: 1;
+    text-transform: uppercase;
+
+    &:hover {
+      text-decoration: underline;
+      text-decoration-thickness: 2px;
+    }
+  }
+}
+
+.site-nav__toggle {
+  display: none;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  color: var(--frank-paper);
+  background: var(--frank-ink);
+  border: 1px solid var(--frank-rule);
+  border-radius: 0;
+  cursor: pointer;
+
+  > span {
+    display: flex;
+    width: 13px;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  i {
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: currentColor;
+
+    &:nth-child(2) {
+      width: 72%;
+    }
+  }
+}
+
+.site-nav.is-open .site-nav__toggle i {
+  &:first-child {
+    transform: translateY(4px) rotate(45deg);
+  }
+
+  &:nth-child(2) {
+    opacity: 0;
+  }
+
+  &:last-child {
+    transform: translateY(-4px) rotate(-45deg);
+  }
+}
+
+.theme-toggle {
+  display: flex;
+  min-height: 32px;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.theme-toggle__plug {
+  display: block;
+  width: 22px;
+  height: 20px;
+  flex: 0 0 22px;
+  color: var(--frank-ink);
+  pointer-events: none;
+}
+
+.theme-toggle__icon {
+  display: block;
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+  stroke-width: 2;
+}
+
+.theme-toggle__icon--plugged {
+  display: none;
+}
+
+html[data-theme="dark"],
+html:has(#color-theme-toggle:checked) {
+  .theme-toggle__icon--unplugged {
+    display: none;
+  }
+
+  .theme-toggle__icon--plugged {
+    display: block;
+  }
+}
+
+html:has(#color-theme-toggle:not(:checked)) {
+  .theme-toggle__icon--unplugged {
+    display: block;
+  }
+
+  .theme-toggle__icon--plugged {
+    display: none;
+  }
+}
+
+.theme-toggle__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.theme-toggle__button {
+  position: static;
+  z-index: 110;
+  display: flex;
+  width: auto;
+  height: auto;
+  min-height: 32px;
+  min-width: 0;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 0.28rem;
+  padding: 0.35rem 0.5rem;
+  color: var(--frank-ink);
+  background: var(--frank-paper);
+  border: 1px solid var(--frank-rule);
+  border-radius: 0;
+  font: inherit;
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  text-transform: uppercase;
+  cursor: pointer;
+  opacity: 1;
+  user-select: none;
+  visibility: visible;
+  transform: none;
+}
+
+.theme-toggle__input:focus-visible + .theme-toggle__button {
+  outline: 2px solid var(--frank-ink);
+  outline-offset: 2px;
+}
+
+.theme-toggle__white {
+  font-weight: 900;
+}
+
+.theme-toggle__black {
+  font-weight: 400;
+}
+
+html[data-theme="dark"] {
+  .theme-toggle__white {
+    font-weight: 400;
+  }
+
+  .theme-toggle__black {
+    font-weight: 900;
+  }
+}
+
+html:has(#color-theme-toggle:not(:checked)) {
+  .theme-toggle__white {
+    font-weight: 900;
+  }
+
+  .theme-toggle__black {
+    font-weight: 400;
+  }
+}
+
+html:has(#color-theme-toggle:checked) {
+  .theme-toggle__white {
+    font-weight: 400;
+  }
+
+  .theme-toggle__black {
+    font-weight: 900;
+  }
+}
