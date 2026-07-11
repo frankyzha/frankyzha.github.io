@@ -16,7 +16,7 @@
   display: grid;
   min-height: calc(100svh - 9rem);
   grid-template-columns: minmax(0, 1.4fr) minmax(320px, 0.75fr);
-  grid-template-rows: 1fr auto;
+  grid-template-rows: 1fr;
   border-bottom: 2px solid var(--frank-rule);
 }
 
@@ -53,10 +53,15 @@
   }
 }
 
-.landing__pitch {
+.landing__right {
+  display: flex;
   grid-column: 2;
   grid-row: 1;
   align-self: center;
+  flex-direction: column;
+}
+
+.landing__pitch {
   padding: 2rem 0 2rem clamp(1.5rem, 3vw, 2.75rem);
   border-left: 2px solid var(--frank-rule);
 }
@@ -103,8 +108,6 @@
 
 .landing__links {
   display: grid;
-  grid-column: 2;
-  grid-row: 2;
   grid-template-columns: 1fr 1fr;
   border-left: 2px solid var(--frank-rule);
 
