@@ -1,0 +1,54 @@
+$frank-post-width: 720px;
+$frank-tablet: 1100px;
+$frank-mobile: 760px;
+$frank-small: 440px;
+
+:root {
+  --frank-ink: #000000;
+  --frank-paper: #ffffff;
+  --frank-muted: #555555;
+  --frank-rule: #000000;
+  --frank-soft-rule: #d8d8d8;
+
+  --global-base-color: var(--frank-ink);
+  --global-bg-color: var(--frank-paper);
+  --global-footer-bg-color: var(--frank-ink);
+  --global-border-color: var(--frank-soft-rule);
+  --global-dark-border-color: var(--frank-ink);
+  --global-code-background-color: var(--frank-paper);
+  --global-code-text-color: var(--frank-ink);
+  --global-fig-caption-color: var(--frank-muted);
+  --global-link-color: var(--frank-ink);
+  --global-link-color-hover: var(--frank-ink);
+  --global-link-color-visited: var(--frank-ink);
+  --global-masthead-link-color: var(--frank-ink);
+  --global-masthead-link-color-hover: var(--frank-ink);
+  --global-text-color: var(--frank-ink);
+  --global-text-color-light: var(--frank-muted);
+  --global-thead-color: var(--frank-paper);
+}
+
+html[data-theme="dark"] {
+  --frank-ink: #ffffff;
+  --frank-paper: #000000;
+  --frank-muted: #aaaaaa;
+  --frank-rule: #ffffff;
+  --frank-soft-rule: #333333;
+}
+
+/* The native checkbox keeps theme switching functional without JavaScript. */
+html:has(#color-theme-toggle:not(:checked)) {
+  --frank-ink: #000000;
+  --frank-paper: #ffffff;
+  --frank-muted: #555555;
+  --frank-rule: #000000;
+  --frank-soft-rule: #d8d8d8;
+}
+
+html:has(#color-theme-toggle:checked) {
+  --frank-ink: #ffffff;
+  --frank-paper: #000000;
+  --frank-muted: #aaaaaa;
+  --frank-rule: #ffffff;
+  --frank-soft-rule: #333333;
+}

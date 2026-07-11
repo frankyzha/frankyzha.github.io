@@ -1,0 +1,11 @@
+<meta name="theme-color" content="#ffffff">
+<script>
+  try {
+    const savedTheme = localStorage.getItem("theme");
+    const useDarkTheme = savedTheme === "dark" ||
+      (savedTheme !== "light" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+    document.documentElement.toggleAttribute("data-theme", useDarkTheme);
+  } catch (_error) {
+    // Use the default theme when storage is unavailable.
+  }
+</script>

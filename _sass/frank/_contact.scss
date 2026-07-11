@@ -1,0 +1,127 @@
+.archive.archive--contact {
+  width: 100%;
+  max-width: $frank-post-width;
+  float: none;
+  margin: 0 auto 6rem;
+  padding-top: clamp(3rem, 7vw, 5rem);
+}
+
+.archive--contact > .page__title {
+  margin-bottom: 2.5rem;
+  font-size: clamp(2rem, 5vw, 2.75rem);
+}
+
+.contact-list {
+  border-top: 2px solid var(--frank-rule);
+}
+
+.contact-link {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 90px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.2rem 0;
+  color: var(--frank-ink) !important;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--frank-soft-rule);
+  border-radius: 0;
+  font: inherit;
+  text-align: left;
+  text-decoration: none !important;
+  cursor: pointer;
+
+  &:hover {
+    padding-right: 0.75rem;
+    padding-left: 0.75rem;
+    color: var(--frank-paper) !important;
+    background: var(--frank-ink);
+  }
+
+  span {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  strong {
+    overflow-wrap: anywhere;
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  b {
+    font-size: 11px;
+  }
+}
+
+.contact-popover {
+  width: min(420px, calc(100vw - 2rem));
+  margin: auto;
+  padding: 0;
+  color: var(--frank-ink);
+  background: var(--frank-paper);
+  border: 2px solid var(--frank-rule);
+  border-radius: 0;
+
+  &::backdrop {
+    background: rgba(127, 127, 127, 0.22);
+  }
+}
+
+.contact-popover__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  border-bottom: 2px solid var(--frank-rule);
+
+  strong {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  button {
+    padding: 0;
+    color: var(--frank-ink);
+    background: transparent;
+    border: 0;
+    font: inherit;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+  }
+}
+
+.contact-popover__body {
+  padding: 1.25rem 1rem;
+
+  a {
+    color: var(--frank-ink);
+    font-size: 16px;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+    text-underline-offset: 0.2em;
+  }
+
+  p {
+    margin: 0.65rem 0 0;
+    color: var(--frank-muted);
+    font-size: 12px;
+  }
+}
+
+@media (max-width: $frank-small) {
+  .contact-link {
+    grid-template-columns: 1fr auto;
+
+    strong {
+      grid-column: 1 / -1;
+      grid-row: 2;
+    }
+  }
+}

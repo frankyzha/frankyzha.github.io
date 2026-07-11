@@ -1,0 +1,127 @@
+@media (max-width: $frank-tablet) {
+  .floating-toc {
+    top: auto;
+    bottom: 1rem;
+    left: 1rem;
+  }
+
+  .floating-toc__panel {
+    top: auto;
+    bottom: calc(100% + 0.5rem);
+    width: min(280px, calc(100vw - 2rem));
+    transform: translateY(5px);
+  }
+
+  .floating-toc.is-open .floating-toc__panel {
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: $frank-mobile) {
+  #main {
+    margin-top: 1.5rem;
+  }
+
+  .landing {
+    min-height: auto;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+
+  .landing__identity {
+    grid-row: auto;
+    min-height: 62svh;
+    padding: 5rem 0 4rem;
+
+    h1 {
+      font-size: clamp(4.7rem, 23vw, 8rem);
+    }
+  }
+
+  .landing__pitch {
+    padding: 2rem 0;
+    border-top: 2px solid var(--frank-rule);
+    border-left: 0;
+  }
+
+  .landing__links {
+    border-left: 0;
+  }
+
+  .archive.archive--blog,
+  .page.page--post {
+    padding-top: 3rem;
+  }
+
+  .site-nav__links {
+    position: absolute;
+    top: calc(100% + 0.75rem);
+    right: 0;
+    display: none;
+    width: min(220px, calc(100vw - 2rem));
+    margin: 0 !important;
+    background: var(--frank-paper);
+    border: 2px solid var(--frank-rule);
+
+    li {
+      border-bottom: 1px solid var(--frank-soft-rule);
+
+      &:last-child {
+        border-bottom: 0;
+      }
+    }
+
+    a {
+      display: block;
+      padding: 0.8rem;
+    }
+  }
+
+  .site-nav.is-open .site-nav__links {
+    display: block;
+  }
+
+  .site-nav__toggle {
+    display: flex;
+    margin-left: auto;
+  }
+}
+
+@media (max-width: $frank-small) {
+  .landing__identity {
+    min-height: 56svh;
+    padding-top: 4rem;
+
+    h1 {
+      font-size: clamp(4.2rem, 23vw, 6.5rem);
+    }
+  }
+
+  .landing__links {
+    grid-template-columns: 1fr;
+
+    a:nth-child(odd) {
+      border-right: 0;
+    }
+  }
+
+  .theme-toggle__button {
+    padding-right: 0.35rem;
+    padding-left: 0.35rem;
+    font-size: 8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

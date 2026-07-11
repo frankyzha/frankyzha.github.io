@@ -1,0 +1,39 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  min-height: 100dvh;
+  flex-direction: column;
+  padding-bottom: 0;
+  color: var(--frank-ink);
+  background: var(--frank-paper);
+  font-family: Helvetica, Arial, ui-sans-serif, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+#main {
+  width: 100%;
+  flex: 1 0 auto;
+}
+
+::selection {
+  color: var(--frank-paper);
+  background: var(--frank-ink);
+}
+
+a {
+  text-underline-offset: 0.18em;
+}
+
+/* Page content should appear immediately after navigation. */
+.masthead,
+#main,
+.breadcrumbs,
+.page__hero,
+.page__hero--overlay {
+  animation: none !important;
+}
