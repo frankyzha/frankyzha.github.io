@@ -1,0 +1,104 @@
+.archive.archive--publications {
+  width: min(100%, 980px);
+  margin-right: auto;
+  margin-left: auto;
+  padding: clamp(2.5rem, 6vw, 5rem) 0 5rem;
+  float: none;
+}
+
+.publication-list {
+  margin: 2.5rem 0 0;
+  padding: 0;
+  border-top: 2px solid var(--frank-rule);
+  list-style: none;
+}
+
+.publication-list__item {
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 1fr);
+  gap: 1rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--frank-soft-rule);
+}
+
+.publication-list__index,
+.publication-list__status,
+.publication-list__links {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.publication-list__index {
+  padding-top: 0.35rem;
+  color: var(--frank-muted);
+}
+
+.publication-list__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.5rem;
+
+  h2 {
+    margin: 0;
+    color: var(--frank-ink);
+    border: 0;
+    font-size: clamp(1.1rem, 2vw, 1.35rem);
+    font-weight: 750;
+    letter-spacing: -0.025em;
+    line-height: 1.25;
+  }
+}
+
+.publication-list__status {
+  flex: 0 0 auto;
+  margin: 0;
+  color: var(--frank-muted);
+  white-space: nowrap;
+}
+
+.publication-list__citation {
+  max-width: 50rem;
+  margin: 0.65rem 0 0;
+  color: var(--frank-muted);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.publication-list__links {
+  display: flex;
+  gap: 1rem;
+  margin: 0.9rem 0 0;
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    color: var(--frank-ink);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+
+    &:hover {
+      text-decoration-thickness: 2px;
+    }
+  }
+}
+
+@media (max-width: $frank-small) {
+  .publication-list__item {
+    grid-template-columns: 1.75rem minmax(0, 1fr);
+    gap: 0.75rem;
+  }
+
+  .publication-list__header {
+    display: block;
+  }
+
+  .publication-list__status {
+    margin-top: 0.45rem;
+    white-space: normal;
+  }
+}

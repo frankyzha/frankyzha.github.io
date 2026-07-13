@@ -1,0 +1,26 @@
+{% assign publication = include.publication %}
+<li class="publication-list__item">
+  <span class="publication-list__index" aria-hidden="true">{{ include.index | prepend: "0" | slice: -2, 2 }}</span>
+  <article class="publication-list__entry">
+    <header class="publication-list__header">
+      <h2>{{ publication.title }}</h2>
+      {% if publication.status or publication.venue %}
+        <p class="publication-list__status">
+          {% if publication.status %}{{ publication.status }}{% endif %}{% if publication.status and publication.venue %} / {% endif %}{% if publication.venue %}{{ publication.venue }}{% endif %}
+        </p>
+      {% endif %}
+    </header>
+
+    {% if publication.citation %}
+      <p class="publication-list__citation">{{ publication.citation }}</p>
+    {% endif %}
+
+    {% if publication.paperurl %}
+      <p class="publication-list__links">
+        <a href="{{ publication.paperurl }}" target="_blank" rel="noopener noreferrer">
+          {% if publication.preprint %}Preprint PDF{% else %}Paper{% endif %}<span aria-hidden="true">↗</span>
+        </a>
+      </p>
+    {% endif %}
+  </article>
+</li>

@@ -3,6 +3,7 @@ title: "Beyond XGBoost: Predicting App Longevity in Google Play with ExcelFormer
 collection: publications
 category: manuscripts
 permalink: /publication/beyond-xgboost-app-longevity
+priority: 3
 excerpt: "A submitted study on predicting Google Play app longevity using ExcelFormer and Trompt."
 date: 2026-01-04
 status: "Submitted"
