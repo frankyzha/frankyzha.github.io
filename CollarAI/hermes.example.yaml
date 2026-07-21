@@ -1,0 +1,25 @@
+# Merge these blocks into ~/.hermes/config.yaml. Replace paths, endpoint, and the exact model ID
+# returned by the inference server's /v1/models endpoint.
+model:
+  default: "gemma-4-26b-a4b-it"
+  provider: "custom"
+  base_url: "http://127.0.0.1:8000/v1"
+  context_length: 131072
+
+agent:
+  reasoning_effort: "medium"
+  tool_use_enforcement: true
+
+mcp_servers:
+  collarai:
+    command: "/absolute/path/to/CollarAI/.venv/bin/collarai-mcp"
+    env:
+      COLLAR_HEADLESS: "false"
+      COLLAR_STATE_DIR: "/absolute/path/to/CollarAI/.collarai"
+      COLLAR_TOY_URL: "http://127.0.0.1:8765"
+    tools:
+      include:
+        - screen_companies
+        - analyze_financing_transactions
+        - get_browser_session_status
+        - get_browser_run

@@ -1,0 +1,59 @@
+---
+layout: archive
+title: "CollarAI Demo"
+permalink: /demo/
+author_profile: false
+demo: true
+mathjax: true
+---
+
+<section class="demo" data-collarai-demo data-api-url="{{ site.collarai_api_url | default: '' }}">
+  <header class="demo__intro">
+    <p class="demo__eyebrow">Browser research / PitchBook</p>
+    <p>Ask one complete company-financing question. CollarAI translates it into a typed workflow, navigates the authenticated research surface, and returns an evidence-backed calculation.</p>
+  </header>
+
+  <form class="demo__form" id="collarai-query-form" novalidate>
+    <label for="collarai-query">Research question</label>
+    <textarea id="collarai-query" name="query" rows="4" maxlength="500" placeholder="What is Nvidia's average debt raised to date?" required></textarea>
+    <div class="demo__access" id="collarai-access" hidden>
+      <label for="collarai-access-key">Demo access key</label>
+      <input id="collarai-access-key" name="access-key" type="password" autocomplete="off" spellcheck="false" placeholder="Paste your invitation key">
+      <span>Kept only for this browser tab.</span>
+    </div>
+    <div class="demo__form-footer">
+      <p>Debt, equity financing, refinancing, and IPO amounts are currently supported.</p>
+      <button type="submit">Run research <span aria-hidden="true">↗</span></button>
+    </div>
+  </form>
+
+  <div class="demo__status" id="collarai-status" role="status" aria-live="polite" data-state="ready">
+    <span>Ready</span>
+    <p>Enter a complete question or choose an example.</p>
+  </div>
+
+  <div class="demo__examples" aria-labelledby="collarai-examples-title">
+    <p id="collarai-examples-title">Try an example</p>
+    <div class="demo__example-list">
+      <button type="button" data-query="For Apple, what is the total sum of all recorded debt refinancing transaction amounts?">
+        <span>01</span> Apple refinancing total
+      </button>
+      <button type="button" data-query="What is Nvidia's average debt raised to date?">
+        <span>02</span> Nvidia debt average
+      </button>
+      <button type="button" data-query="What is Nvidia's IPO amount?">
+        <span>03</span> Nvidia IPO amount
+      </button>
+    </div>
+  </div>
+
+  <article class="demo__result" id="collarai-result" aria-live="polite" hidden>
+    <header><span>Result</span><span id="collarai-result-time"></span></header>
+    <div class="demo__markdown" id="collarai-result-content"></div>
+  </article>
+
+  <footer class="demo__footnote">
+    <span>Scope</span>
+    <p>This proof of concept performs read-only research. It does not provide investment advice, and missing transaction values are never treated as zero.</p>
+  </footer>
+</section>

@@ -1,0 +1,54 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "collarai-browser"
+version = "0.2.0"
+description = "A narrow, evidence-producing browser MCP for authenticated market research."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "fastapi>=0.115,<1",
+  "keyring>=25.6,<26",
+  "mcp>=1.27,<2",
+  "pydantic>=2.10,<3",
+  "stagehand>=3.21,<4",
+  "uvicorn>=0.34,<1",
+  "websockets>=15,<17",
+]
+
+[project.optional-dependencies]
+dev = [
+  "httpx>=0.28,<1",
+  "pytest>=8.3,<10",
+  "pytest-asyncio>=0.25,<2",
+  "ruff>=0.9,<1",
+]
+
+[project.scripts]
+collarai-demo = "collarai.cli:main"
+collarai-api = "collarai.web_api:main"
+collarai-access = "collarai.access:main"
+collarai-mcp = "collarai.mcp_server:main"
+collarai-pitchbook = "collarai.handoff:main"
+collarai-toy = "collarai.toy.app:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"collarai.toy" = ["static/*"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+asyncio_mode = "auto"
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]

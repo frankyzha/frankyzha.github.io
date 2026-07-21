@@ -33,4 +33,12 @@ docker run --rm -p 4000:4000 -v "$PWD":/src -w /src jekyll-site \
 
 Prefer native browser APIs and existing design tokens. Add a dependency only when it replaces enough custom code to justify its maintenance and download cost.
 
+## CollarAI demo
+
+The `/demo/` page is dependency-free and uses the site's existing monochrome tokens. During local
+development it calls `http://127.0.0.1:8787`; start the worker from `CollarAI/` with
+`uv run --no-editable collarai-api`. Production uses the protected HTTPS endpoint configured as
+`collarai_api_url` in `_config.yml`. Hosted requests require the separate invitation key stored in
+the operating system vault; see `CollarAI/docs/WEB_DEMO.md`.
+
 The Pages workflow runs the same JavaScript checks before every production build.

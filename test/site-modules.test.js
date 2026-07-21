@@ -4,6 +4,7 @@ import { afterEach, test } from "node:test";
 import { runInNewContext } from "node:vm";
 
 import { initNavigation } from "../assets/js/modules/navigation.js";
+import { renderMarkdown, validateQuery } from "../assets/js/demo.js";
 
 class ClassList {
   #values = new Set();
@@ -136,4 +137,24 @@ test("navigation keeps visual and accessibility state synchronized", () => {
   assert.equal(nav.classList.contains("is-open"), true);
   assert.equal(toggle.getAttribute("aria-expanded"), "true");
   assert.equal(toggle.getAttribute("aria-label"), "Close navigation menu");
+});
+
+test("demo validation rejects incomplete and irrelevant prompts", () => {
+  assert.equal(validateQuery("Tell me a joke.").code, "Irrelevant");
+  assert.equal(validateQuery("What is the average debt raised to date?").code, "Incomplete");
+  assert.equal(validateQuery("What is Nvidia's IPO amount?"), null);
+});
+
+test("demo markdown renders tables while escaping injected HTML", () => {
+  const html = renderMarkdown([
+    "## Nvidia <script>alert(1)</script>",
+    "",
+    "| Measure | Result |",
+    "|---|---:|",
+    "| IPO | **$42,000,000** |"
+  ].join("\n"));
+  assert.match(html, /<table>/);
+  assert.match(html, /<strong>\$42,000,000<\/strong>/);
+  assert.doesNotMatch(html, /<script>/);
+  assert.match(html, /&lt;script&gt;/);
 });
