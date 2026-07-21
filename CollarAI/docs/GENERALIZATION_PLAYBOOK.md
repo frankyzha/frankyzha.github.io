@@ -36,7 +36,7 @@ The public MCP operation for the generalized workflow is conceptually:
 ```text
 analyze_financing_transactions(
     company_name,
-    category,       # Debt Financing | Equity Financing
+    category,       # All Deals | Debt Financing | Equity Financing
     metric,         # sum/average Amount or latest/min/max/average Raised to Date
     deal_types=[],  # optional exact row-level Deal Type filters, such as IPO
 ) -> typed transactions + exact aggregate + evidence path
@@ -115,7 +115,7 @@ subsequently handled:
 
 - a different entity (Apple);
 - a different category (Equity Financing);
-- exact row-level deal types (Debt Refinancing and IPO);
+- exact row-level deal types (Debt Refinancing, IPO, and Grant);
 - all rows across pagination;
 - six aggregates over Amount and Raised to Date;
 - disclosed and missing values without treating missing as zero.
@@ -152,6 +152,14 @@ validated table took about 0.12 seconds each. This comes from retaining the
 Stagehand session, checking page postconditions before navigating, extracting
 the current table directly, and capturing only the visible viewport. It is not
 an answer cache.
+
+The later semantic-routing regression used Duke-hosted Gemma 4 26B-A4B with a
+131,072-token server context. All ten original questions routed to the expected
+typed requests. It also accepted “What is OpenAI total grant?”, routed it to All
+Deals plus exact deal type Grant, and rejected irrelevant and incomplete prompts
+without opening the browser. The live non-synthetic PitchBook run found two
+disclosed Grant rows ($30M and $1B) and returned $1.03B under run ID
+`8104369c-2bc9-4a87-bfcc-0a6abc63b717`.
 
 ## How the Nvidia IPO answer was obtained
 

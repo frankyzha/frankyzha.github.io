@@ -10,6 +10,7 @@ from stagehand import AsyncSession, AsyncStagehand
 
 from collarai.chrome import ChromeSession
 from collarai.config import Settings, profile_path
+from collarai.credentials import InferenceTokenStore
 from collarai.stagehand_browser import ActionCache, StagehandPage, browser_websocket_url
 
 
@@ -29,6 +30,7 @@ class BrowserSessionManager:
         self._sessions: dict[str, BrowserSession] = {}
         self._manager_lock = asyncio.Lock()
         self._cache = ActionCache(settings.state_dir / "stagehand-actions.json")
+        self._model_api_key: str | None = None
 
     @asynccontextmanager
     async def acquire(self, session_key: str) -> AsyncIterator[BrowserSession]:
@@ -98,7 +100,7 @@ class BrowserSessionManager:
                 raise RuntimeError("Stagehand did not return a CDP endpoint")
             model = {
                 "model_name": self.settings.stagehand_model,
-                "api_key": self.settings.stagehand_model_api_key,
+                "api_key": self._resolved_model_api_key(),
                 "base_url": self.settings.stagehand_model_base_url,
             }
             page = await StagehandPage.open(
@@ -116,12 +118,20 @@ class BrowserSessionManager:
     def _new_client(self) -> AsyncStagehand:
         return AsyncStagehand(
             server="local",
-            model_api_key=self.settings.stagehand_model_api_key,
+            model_api_key=self._resolved_model_api_key(),
             local_headless=self.settings.headless,
             local_shutdown_on_close=True,
             timeout=30,
             max_retries=1,
         )
+
+    def _resolved_model_api_key(self) -> str:
+        if self._model_api_key is None:
+            configured = self.settings.stagehand_model_api_key
+            self._model_api_key = (
+                InferenceTokenStore().load() if configured == "local" else configured
+            ) or configured
+        return self._model_api_key
 
     async def _browser_config(
         self,

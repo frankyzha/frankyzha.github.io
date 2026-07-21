@@ -138,18 +138,8 @@ function forgetAccessKey() {
 }
 
 export function validateQuery(query) {
-  if (query.length < 12) {
-    return { code: "Incomplete", message: "Write one complete company-financing question." };
-  }
-  if (!/\b(debt|equity|financ\w*|refinanc\w*|ipo|raised)\b/i.test(query)) {
-    return { code: "Irrelevant", message: "This demo only handles supported company-financing questions." };
-  }
-  const namesCompany = /\bfor\s+[^,]{1,80},|\bwhat(?:'s|’s|\s+is|\s+was)\s+[^?]{1,80}['’]s\s+|\bhow\s+much\s+did\s+.{1,80}\s+raise\b/i;
-  if (!namesCompany.test(query)) {
-    return { code: "Incomplete", message: "Name one company and ask for a specific financing measure." };
-  }
-  if (!/\b(total|sum|average|mean|minimum|min|max|maximum|latest|amount|size|to date|how much)\b/i.test(query)) {
-    return { code: "Incomplete", message: "Specify the total, average, minimum, maximum, latest value, or IPO amount." };
+  if (!query) {
+    return { code: "Incomplete", message: "Write one research question." };
   }
   return null;
 }

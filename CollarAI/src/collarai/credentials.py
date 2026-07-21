@@ -15,6 +15,8 @@ _SERVICE = "com.collarai.pitchbook.duke-sso"
 _SESSION_ACCOUNT = "pitchbook-session"
 _API_SERVICE = "com.collarai.browser-demo"
 _API_ACCOUNT = "access-token"
+_INFERENCE_SERVICE = "com.collarai.duke-inference"
+_INFERENCE_ACCOUNT = os.getenv("USER", "collarai")
 
 
 @dataclass(slots=True)
@@ -136,6 +138,33 @@ class AccessTokenStore:
             keyring.delete_password(_API_SERVICE, _API_ACCOUNT)
         except PasswordDeleteError:
             return
+        except KeyringError as error:
+            raise ConfigurationRequired(
+                "The operating system credential vault is unavailable"
+            ) from error
+
+
+class InferenceTokenStore:
+    """Manage the Duke inference token without source or launchd-file secrets."""
+
+    def create(self, *, rotate: bool = False) -> str:
+        existing = self.load()
+        if existing and not rotate:
+            return existing
+        token = secrets.token_urlsafe(32)
+        try:
+            keyring.set_password(_INFERENCE_SERVICE, _INFERENCE_ACCOUNT, token)
+        except KeyringError as error:
+            raise ConfigurationRequired(
+                "The operating system credential vault is unavailable"
+            ) from error
+        return token
+
+    def load(self) -> str | None:
+        if token := os.getenv("COLLAR_QUERY_MODEL_API_KEY"):
+            return token
+        try:
+            return keyring.get_password(_INFERENCE_SERVICE, _INFERENCE_ACCOUNT)
         except KeyringError as error:
             raise ConfigurationRequired(
                 "The operating system credential vault is unavailable"

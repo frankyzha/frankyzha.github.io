@@ -13,7 +13,7 @@ authorized human trace; company screening remains a separate workflow to demonst
 ```text
 User request
     ↓
-Hermes + local model              reasoning, parameter translation
+Hermes + Duke-hosted Gemma        reasoning, parameter translation
     ↓ MCP: analyze_financing_transactions(...)
 CollarAI Browser MCP              typed contract, policy, session, evidence
     ↓
@@ -83,8 +83,8 @@ uv run --no-editable pytest
 
 ## Run the query API and website demo
 
-The web API keeps one browser service warm and rejects irrelevant, incomplete, or unsupported
-questions before a browser session starts:
+The web API keeps one browser service warm. Duke-hosted Gemma selects one narrow function from the
+capability catalog; Pydantic validates every argument before a browser session can start:
 
 ```bash
 uv run --no-editable collarai-api
@@ -92,7 +92,8 @@ uv run --no-editable collarai-api
 
 It listens on `http://127.0.0.1:8787` by default. The website's `/demo/` page automatically uses
 that address during a localhost preview. Valid questions are routed into
-`FinancingAnalysisRequest`; results are returned as structured fields plus safe Markdown and LaTeX.
+`FinancingAnalysisRequest`; irrelevant, incomplete, unsupported, or invalid model outputs fail
+closed. Results are returned as structured fields plus safe Markdown and LaTeX.
 
 GitHub Pages hosts only the static interface. A live deployment requires a separate authenticated
 HTTPS proxy in front of this API and a `collarai_api_url` value in the website `_config.yml`.
@@ -130,10 +131,10 @@ Reusable speed and reliability live in Python, not in that prompt.
 
 ## MCP surface
 
-`analyze_financing_transactions(request)` extracts a company's Debt Financing or Equity Financing
-table, optionally filters exact deal types, and deterministically computes sum/average Amount or
-latest/minimum/maximum/average Raised to Date. `screen_companies(screen)` performs structured
-discovery. Both return one of these run states:
+`analyze_financing_transactions(request)` extracts a company's All Deals, Debt Financing, or Equity
+Financing table, optionally filters exact deal types such as Grant, Debt Refinancing, or IPO, and
+deterministically computes sum/average Amount or latest/minimum/maximum/average Raised to Date.
+`screen_companies(screen)` performs structured discovery. Both return one of these run states:
 
 - `complete`: verified companies and evidence are available.
 - `needs_human`: leave the browser open and ask the user to finish login/MFA/CAPTCHA.
@@ -223,6 +224,15 @@ Run the ten live generalization checks through one warm Stagehand session:
 uv run --no-editable python scripts/validate_pitchbook_queries.py
 ```
 
+Validate the natural-language boundary itself against the Duke Gemma endpoint:
+
+```bash
+PYTHONPATH=src uv run --no-editable python scripts/validate_semantic_router.py
+```
+
+This checks all ten original phrasings, a grant query, an irrelevant request, and an incomplete
+request. It validates routing only; accepted requests still obtain their answers from PitchBook.
+
 The script contains request schemas, not expected values or answer fixtures. Each question produces
 a fresh evidence directory.
 
@@ -236,7 +246,8 @@ handles pagination, verifies the applied filter, and returns complete typed rows
 src/collarai/
   mcp_server.py       four typed tools and managed lifecycle
   web_api.py          narrow HTTP query boundary for the website demo
-  query.py            deterministic language routing and answer presentation
+  query.py            schema-constrained semantic routing and answer presentation
+  inference.py        small OpenAI-compatible tool-call client
   service.py          policy → session → adapter → evidence orchestration
   browser.py          warm native Stagehand sessions
   stagehand_browser.py Stagehand actions plus deterministic CDP inspection
@@ -248,7 +259,12 @@ src/collarai/
 tests/
   test_browser_e2e.py real Chromium login/screen/evidence test
 scripts/
+  provision_duke_inference.py secure Slurm worker provisioning
+  validate_semantic_router.py Duke-model routing regression suite
   validate_pitchbook_queries.py ten-query live regression runner
+deploy/
+  duke_gemma_server.sbatch    authenticated 128K llama.cpp service on Slurm
+  duke_inference_tunnel.sh    supervised loopback SSH tunnel
 ```
 
 The MCP SDK is pinned to stable v1 (`mcp<2`) because v2 is still pre-release as of this project

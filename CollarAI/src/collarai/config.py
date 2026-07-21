@@ -24,6 +24,9 @@ class Settings:
     stagehand_model: str = "openai/gemma-4-26b-a4b-it"
     stagehand_model_base_url: str = "http://127.0.0.1:8000/v1"
     stagehand_model_api_key: str = "local"
+    query_model: str = "gemma-4-26b-a4b-it"
+    query_model_base_url: str = "http://127.0.0.1:8000/v1"
+    query_model_timeout_seconds: float = 30.0
 
     @property
     def profile_dir(self) -> Path:
@@ -51,6 +54,13 @@ class Settings:
                 "COLLAR_STAGEHAND_MODEL_BASE_URL", "http://127.0.0.1:8000/v1"
             ).rstrip("/"),
             stagehand_model_api_key=os.getenv("COLLAR_STAGEHAND_MODEL_API_KEY", "local"),
+            query_model=os.getenv("COLLAR_QUERY_MODEL", "gemma-4-26b-a4b-it"),
+            query_model_base_url=os.getenv(
+                "COLLAR_QUERY_MODEL_BASE_URL", "http://127.0.0.1:8000/v1"
+            ).rstrip("/"),
+            query_model_timeout_seconds=float(
+                os.getenv("COLLAR_QUERY_MODEL_TIMEOUT_SECONDS", "30")
+            ),
         )
 
 

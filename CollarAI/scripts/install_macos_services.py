@@ -10,24 +10,28 @@ import time
 from pathlib import Path
 
 API_LABEL = "com.collarai.demo-api"
+INFERENCE_LABEL = "com.collarai.duke-inference-tunnel"
 TAILSCALE_LABEL = "com.collarai.tailscaled"
 PUBLIC_ORIGIN = "https://frankyzha.github.io"
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(
-        description="Install or remove the local CollarAI API and Tailscale Funnel services"
+        description="Install or remove the CollarAI API, Duke tunnel, and Tailscale services"
     )
     parser.add_argument("--uninstall", action="store_true")
     args = parser.parse_args()
 
     root = Path(__file__).resolve().parents[1]
     agents = Path.home() / "Library" / "LaunchAgents"
-    targets = [agents / f"{label}.plist" for label in (TAILSCALE_LABEL, API_LABEL)]
+    support = Path.home() / "Library" / "Application Support" / "CollarAI"
+    tunnel_script = support / "duke_inference_tunnel.sh"
+    targets = [agents / f"{label}.plist" for label in (TAILSCALE_LABEL, INFERENCE_LABEL, API_LABEL)]
     if args.uninstall:
         for target in targets:
             _bootout(target)
             target.unlink(missing_ok=True)
+        tunnel_script.unlink(missing_ok=True)
         print("Removed the CollarAI launch services. Runtime state and credentials were preserved.")
         return
 
@@ -42,8 +46,10 @@ def main() -> None:
     state = runtime / "tailscale.state"
     tailscale_dir = runtime / "tailscale"
     socket = runtime / "tailscaled.sock"
-    for directory in (agents, logs, tailscale_dir):
+    for directory in (agents, support, logs, tailscale_dir):
         directory.mkdir(parents=True, exist_ok=True, mode=0o700)
+    shutil.copyfile(root / "deploy" / "duke_inference_tunnel.sh", tunnel_script)
+    tunnel_script.chmod(0o700)
 
     plists = {
         targets[0]: {
@@ -62,6 +68,18 @@ def main() -> None:
             "StandardErrorPath": str(logs / "tailscaled.error.log"),
         },
         targets[1]: {
+            "Label": INFERENCE_LABEL,
+            "ProgramArguments": [
+                "/bin/bash",
+                str(tunnel_script),
+            ],
+            "RunAtLoad": True,
+            "KeepAlive": True,
+            "ThrottleInterval": 5,
+            "StandardOutPath": str(logs / "duke-tunnel.log"),
+            "StandardErrorPath": str(logs / "duke-tunnel.error.log"),
+        },
+        targets[2]: {
             "Label": API_LABEL,
             "ProgramArguments": [str(python), "-m", "collarai.web_api"],
             "WorkingDirectory": str(root),

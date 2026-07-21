@@ -12,6 +12,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
 from collarai.credentials import AccessTokenStore
+from collarai.inference import InferenceUnavailable
 from collarai.models import RunStatus
 from collarai.query import QueryAnswer, QueryInput, QueryRejected, QueryRouter, format_answer
 from collarai.service import BrowserService, build_service
@@ -27,10 +28,9 @@ _DEFAULT_TOKEN = object()
 def create_app(
     service_factory: Callable[[], BrowserService] = build_service,
     access_token: str | None | object = _DEFAULT_TOKEN,
+    router: QueryRouter | None = None,
 ) -> FastAPI:
-    expected_token = (
-        AccessTokenStore().load() if access_token is _DEFAULT_TOKEN else access_token
-    )
+    expected_token = AccessTokenStore().load() if access_token is _DEFAULT_TOKEN else access_token
     require_auth = bool(expected_token) or _env_bool("COLLAR_API_REQUIRE_AUTH")
 
     @asynccontextmanager
@@ -43,12 +43,12 @@ def create_app(
 
     app = FastAPI(
         title="CollarAI Demo API",
-        version="0.2.0",
+        version="0.3.0",
         docs_url=None,
         redoc_url=None,
         lifespan=lifespan,
     )
-    app.state.router = QueryRouter()
+    app.state.router = router or QueryRouter()
     app.add_middleware(
         CORSMiddleware,
         allow_origins=_allowed_origins(),
@@ -62,6 +62,18 @@ def create_app(
         return JSONResponse(
             status_code=422,
             content={"error": {"code": error.code.value, "message": str(error)}},
+        )
+
+    @app.exception_handler(InferenceUnavailable)
+    async def model_unavailable(_: Request, error: InferenceUnavailable) -> JSONResponse:
+        return JSONResponse(
+            status_code=503,
+            content={
+                "error": {
+                    "code": "model_unavailable",
+                    "message": str(error),
+                }
+            },
         )
 
     @app.get("/health")
@@ -80,8 +92,8 @@ def create_app(
                     }
                 },
             )
-        routed = app.state.router.parse(payload.query)
         started = perf_counter()
+        routed = await app.state.router.parse(payload.query)
         result = await request.app.state.browser.analyze_financing_transactions(routed.request)
         elapsed_ms = round((perf_counter() - started) * 1_000)
         if result.status is RunStatus.COMPLETE:

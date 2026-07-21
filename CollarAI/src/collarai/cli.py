@@ -12,7 +12,7 @@ from collarai.service import build_service
 async def run_demo(query: str) -> None:
     service = build_service()
     try:
-        routed = QueryRouter().parse(query)
+        routed = await QueryRouter().parse(query)
         started = perf_counter()
         result = await service.analyze_financing_transactions(routed.request)
         elapsed_ms = round((perf_counter() - started) * 1_000)

@@ -16,6 +16,7 @@ class FundingStage(str, Enum):
 
 
 class FinancingCategory(str, Enum):
+    ALL = "All Deals"
     DEBT = "Debt Financing"
     EQUITY = "Equity Financing"
 

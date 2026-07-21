@@ -139,9 +139,10 @@ test("navigation keeps visual and accessibility state synchronized", () => {
   assert.equal(toggle.getAttribute("aria-label"), "Close navigation menu");
 });
 
-test("demo validation rejects incomplete and irrelevant prompts", () => {
-  assert.equal(validateQuery("Tell me a joke.").code, "Irrelevant");
-  assert.equal(validateQuery("What is the average debt raised to date?").code, "Incomplete");
+test("demo leaves semantic validation to the backend model", () => {
+  assert.equal(validateQuery("").code, "Incomplete");
+  assert.equal(validateQuery("Tell me a joke."), null);
+  assert.equal(validateQuery("What is OpenAI total grant?"), null);
   assert.equal(validateQuery("What is Nvidia's IPO amount?"), null);
 });
 

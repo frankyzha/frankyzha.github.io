@@ -17,7 +17,7 @@ mathjax: true
       <span>Kept only for this browser tab.</span>
     </div>
     <div class="demo__form-footer">
-      <p>Debt, equity financing, refinancing, and IPO amounts are currently supported.</p>
+      <p>Debt, equity financing, refinancing, IPO, and grant amounts are currently supported.</p>
       <button type="submit">Run research <span aria-hidden="true">↗</span></button>
     </div>
   </form>
@@ -30,8 +30,8 @@ mathjax: true
   <div class="demo__examples" aria-labelledby="collarai-examples-title">
     <p id="collarai-examples-title">Try an example</p>
     <div class="demo__example-list">
-      <button type="button" data-query="What is Apple's total debt raised to date?">
-        <span>01</span> What is Apple's total debt raised to date?
+      <button type="button" data-query="What is OpenAI's total grant amount?">
+        <span>01</span> What is OpenAI's total grant amount?
       </button>
       <button type="button" data-query="What is Nvidia's total debt raised to date?">
         <span>02</span> What is Nvidia's total debt raised to date?

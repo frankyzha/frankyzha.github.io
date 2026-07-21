@@ -7,17 +7,21 @@ Tailscale Funnel provides HTTPS ingress while the API enforces its own bearer ke
 ## Request path
 
 ```text
-Browser → POST /api/query → QueryRouter → FinancingAnalysisRequest
+Browser → POST /api/query → Duke Gemma tool call → local schema validation
+        → FinancingAnalysisRequest
         → BrowserService → Stagehand/PitchBook → typed result → Markdown response
 ```
 
-`QueryRouter` is deterministic. It rejects three classes before browsing:
+`QueryRouter` is semantic, but its output boundary is deterministic. Gemma can select exactly one
+declared capability; Pydantic rejects unknown tools, extra fields, invalid enum values, and malformed
+arguments before browsing. The model can reject three classes:
 
 - `irrelevant`: not a supported company-financing question;
 - `incomplete`: missing a company, subject, or aggregate;
 - `unsupported`: finance-related, but outside the demonstrated adapter.
 
-The model never receives arbitrary browser controls from this endpoint. The response contains an
+The model receives the question and typed capability schemas—not a screenshot, DOM, password, or
+arbitrary browser controls. The response contains an
 aggregate, coverage counts, timing, and a run ID—not credentials or raw session state.
 
 ## Local proof of concept
@@ -33,6 +37,17 @@ Serve the Jekyll site at `http://127.0.0.1:4000` and open `/demo/`. The page aut
 
 ## Private hosted proof of concept
 
+Provision or resume the 128K Gemma worker on Duke. This creates one random inference token, stores it
+in macOS Keychain and a mode-0600 remote file, copies the Slurm definition, and avoids duplicate jobs:
+
+```bash
+PYTHONPATH=src uv run --no-editable python scripts/provision_duke_inference.py
+```
+
+The Slurm job uses one A5000, binds its authenticated `llama.cpp` server to the compute-node network,
+and requeues before its short backfill lease expires. Rotate the inference token only when necessary
+with `--rotate-token`; rotation restarts that job.
+
 Create the invitation key once. It is stored in the operating system vault and printed only in your
 own terminal:
 
@@ -46,9 +61,10 @@ Install Tailscale once:
 brew install tailscale
 ```
 
-The checked-in installer registers two per-user macOS services: the loopback API and a userspace
-Tailscale daemon. It stores runtime state and logs under the ignored `.collarai/` directory; it does
-not place a Duke password, PitchBook cookie, or demo access key in a plist.
+The checked-in installer registers three per-user macOS services: the loopback API, a supervised SSH
+tunnel to the active Duke Slurm worker, and a userspace Tailscale daemon. It stores runtime state and
+logs under the ignored `.collarai/` directory; it does not place a Duke password, PitchBook cookie,
+inference token, or demo access key in a plist.
 
 ```bash
 uv run --no-sync python scripts/install_macos_services.py
@@ -56,7 +72,8 @@ uv run --no-sync python scripts/install_macos_services.py
 
 If this is the machine's first run, the installer prints the exact `tailscale ... up` command. Open
 its login link, authenticate in the browser, and run the installer once more. After that, launchd
-restarts both local services automatically when needed.
+restarts the local services automatically when needed. The tunnel discovers the node running the
+`collarai-gemma` Slurm job and rediscovers it after a requeue.
 
 Verify the public boundary without exposing the invitation key:
 
