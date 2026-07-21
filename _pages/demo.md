@@ -30,8 +30,8 @@ mathjax: true
   <div class="demo__examples" aria-labelledby="collarai-examples-title">
     <p id="collarai-examples-title">Try an example</p>
     <div class="demo__example-list">
-      <button type="button" data-query="For Apple, what is the total sum of all recorded debt refinancing transaction amounts?">
-        <span>01</span> For Apple, what is the total sum of all recorded debt refinancing transaction amounts?
+      <button type="button" data-query="What is Apple's total debt raised to date?">
+        <span>01</span> What is Apple's total debt raised to date?
       </button>
       <button type="button" data-query="What is Nvidia's total debt raised to date?">
         <span>02</span> What is Nvidia's total debt raised to date?
