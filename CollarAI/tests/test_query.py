@@ -89,6 +89,17 @@ class FakeBrowserService:
         return None
 
 
+class FailedBrowserService(FakeBrowserService):
+    async def analyze_financing_transactions(self, request):
+        return FinancingAnalysisResult(
+            run_id="22222222-2222-2222-2222-222222222222",
+            status=RunStatus.FAILED,
+            platform="pitchbook",
+            request=request,
+            message="ConnectionClosedError: private internal detail",
+        )
+
+
 @pytest.mark.asyncio
 async def test_web_api_returns_markdown_and_structured_interpretation() -> None:
     app = create_app(service_factory=FakeBrowserService, access_token=None)
@@ -138,3 +149,20 @@ async def test_web_api_requires_the_configured_bearer_token() -> None:
 
     assert denied.status_code == 401
     assert allowed.status_code == 200
+
+
+@pytest.mark.asyncio
+async def test_web_api_hides_internal_browser_failures() -> None:
+    app = create_app(service_factory=FailedBrowserService, access_token=None)
+    async with app.router.lifespan_context(app):
+        transport = ASGITransport(app=app)
+        async with AsyncClient(transport=transport, base_url="http://test") as client:
+            response = await client.post(
+                "/api/query",
+                json={"query": "What is Nvidia's IPO amount?"},
+            )
+
+    assert response.status_code == 502
+    assert response.json()["error"]["message"] == (
+        "The browser session could not complete the query. Please retry."
+    )

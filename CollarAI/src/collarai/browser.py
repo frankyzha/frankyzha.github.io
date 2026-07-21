@@ -34,7 +34,14 @@ class BrowserSessionManager:
     async def acquire(self, session_key: str) -> AsyncIterator[BrowserSession]:
         session = await self._get_or_create(session_key)
         async with session.lock:
-            yield session
+            if await session.page.is_healthy():
+                yield session
+                return
+
+            await self.invalidate(session_key, expected=session)
+            replacement = await self._get_or_create(session_key)
+            async with replacement.lock:
+                yield replacement
 
     def has_session(self, session_key: str) -> bool:
         return session_key in self._sessions
@@ -50,6 +57,22 @@ class BrowserSessionManager:
         if self._client is not None:
             await self._client.close()
             self._client = None
+
+    async def invalidate(
+        self,
+        session_key: str,
+        *,
+        expected: BrowserSession | None = None,
+    ) -> None:
+        async with self._manager_lock:
+            session = self._sessions.get(session_key)
+            if session is None or (expected is not None and session is not expected):
+                return
+            self._sessions.pop(session_key)
+        with suppress(Exception):
+            await session.page.close()
+        with suppress(Exception):
+            await session.stagehand.end(timeout=10)
 
     async def _get_or_create(self, session_key: str) -> BrowserSession:
         if session_key in self._sessions:

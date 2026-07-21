@@ -14,8 +14,9 @@ from uuid import uuid4
 
 from stagehand import AsyncSession
 from websockets.asyncio.client import connect
+from websockets.exceptions import ConnectionClosed
 
-from collarai.errors import WorkflowError
+from collarai.errors import BrowserConnectionLost, WorkflowError
 
 
 class ActionCache:
@@ -74,16 +75,19 @@ class CDPConnection:
             }
             if session_id:
                 message["sessionId"] = session_id
-            await self.websocket.send(json.dumps(message))
-            while True:
-                response = json.loads(await self.websocket.recv())
-                if response.get("id") != identifier:
-                    continue
-                if error := response.get("error"):
-                    raise WorkflowError(
-                        f"CDP {method} failed: {error.get('message', 'unknown error')}"
-                    )
-                return response.get("result", {})
+            try:
+                await self.websocket.send(json.dumps(message))
+                while True:
+                    response = json.loads(await self.websocket.recv())
+                    if response.get("id") != identifier:
+                        continue
+                    if error := response.get("error"):
+                        raise WorkflowError(
+                            f"CDP {method} failed: {error.get('message', 'unknown error')}"
+                        )
+                    return response.get("result", {})
+            except (ConnectionClosed, OSError) as error:
+                raise BrowserConnectionLost("The browser-control connection closed") from error
 
     async def close(self) -> None:
         await self.websocket.close()
@@ -162,6 +166,12 @@ class StagehandPage:
 
     def begin_run(self) -> None:
         self.action_log.clear()
+
+    async def is_healthy(self) -> bool:
+        try:
+            return await asyncio.wait_for(self.evaluate("true"), timeout=2) is True
+        except Exception:
+            return False
 
     async def goto(self, url: str) -> None:
         await self.session.navigate(

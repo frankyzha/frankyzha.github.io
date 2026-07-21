@@ -97,7 +97,7 @@ def create_app(
             content={
                 "error": {
                     "code": result.status.value,
-                    "message": result.message or "The browser workflow did not complete.",
+                    "message": _public_error_message(result.status, result.message),
                     "run_id": result.run_id,
                 }
             },
@@ -122,6 +122,12 @@ def _authorized(request: Request, expected_token: str | None | object) -> bool:
         return False
     scheme, _, supplied = request.headers.get("Authorization", "").partition(" ")
     return scheme.casefold() == "bearer" and compare_digest(supplied, expected_token)
+
+
+def _public_error_message(status: RunStatus, detail: str | None) -> str:
+    if status in {RunStatus.NEEDS_HUMAN, RunStatus.NEEDS_CONFIGURATION} and detail:
+        return detail
+    return "The browser session could not complete the query. Please retry."
 
 
 app = create_app()

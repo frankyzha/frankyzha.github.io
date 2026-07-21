@@ -16,3 +16,7 @@ class PolicyViolation(CollarAIError):
 
 class WorkflowError(CollarAIError):
     """A deterministic workflow step and its recovery both failed."""
+
+
+class BrowserConnectionLost(WorkflowError):
+    """The local browser-control connection closed and may be safely recreated."""

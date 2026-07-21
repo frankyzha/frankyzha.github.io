@@ -12,7 +12,7 @@ from collarai.analytics import aggregate_financing
 from collarai.browser import BrowserSessionManager
 from collarai.config import Settings
 from collarai.credentials import CredentialStore
-from collarai.errors import AuthenticationRequired, ConfigurationRequired
+from collarai.errors import AuthenticationRequired, BrowserConnectionLost, ConfigurationRequired
 from collarai.evidence import EvidenceStore
 from collarai.models import (
     BrowserSessionStatus,
@@ -122,26 +122,38 @@ class BrowserService:
         self.policy.check_url(adapter.base_url)
         run_dir = self.evidence.create_run(result.run_id)
         result.evidence_path = str(run_dir)
-        try:
-            async with self.sessions.acquire(platform) as session:
-                session.page.begin_run()
-                try:
-                    await adapter.ensure_authenticated(session.page)
-                    await work(adapter, session.page)
-                except AuthenticationRequired as error:
-                    result.status = RunStatus.NEEDS_HUMAN
-                    result.message = str(error)
-                except ConfigurationRequired as error:
-                    result.status = RunStatus.NEEDS_CONFIGURATION
-                    result.message = str(error)
-                except Exception as error:  # Preserve evidence and return a typed failure.
-                    result.message = f"{type(error).__name__}: {str(error)[:500]}"
-                finally:
-                    if result.status is not RunStatus.NEEDS_HUMAN:
-                        await self._capture(session.page, run_dir / "final.png")
-                    self._save_stagehand_log(session.page, run_dir / "stagehand.json")
-        except Exception as error:
-            result.message = f"{type(error).__name__}: {str(error)[:500]}"
+        for attempt in range(2):
+            session = None
+            try:
+                async with self.sessions.acquire(platform) as session:
+                    session.page.begin_run()
+                    try:
+                        await adapter.ensure_authenticated(session.page)
+                        await work(adapter, session.page)
+                    except BrowserConnectionLost:
+                        raise
+                    except AuthenticationRequired as error:
+                        result.status = RunStatus.NEEDS_HUMAN
+                        result.message = str(error)
+                    except ConfigurationRequired as error:
+                        result.status = RunStatus.NEEDS_CONFIGURATION
+                        result.message = str(error)
+                    except Exception as error:  # Preserve evidence and return a typed failure.
+                        result.message = f"{type(error).__name__}: {str(error)[:500]}"
+                    finally:
+                        if result.status is not RunStatus.NEEDS_HUMAN:
+                            await self._capture(session.page, run_dir / "final.png")
+                        self._save_stagehand_log(session.page, run_dir / "stagehand.json")
+                break
+            except BrowserConnectionLost as error:
+                if session is not None:
+                    await self.sessions.invalidate(platform, expected=session)
+                if attempt == 0:
+                    continue
+                result.message = f"{type(error).__name__}: {str(error)[:500]}"
+            except Exception as error:
+                result.message = f"{type(error).__name__}: {str(error)[:500]}"
+                break
         self.evidence.save_result(result)
         return result
 
