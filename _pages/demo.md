@@ -31,13 +31,19 @@ mathjax: true
     <p id="collarai-examples-title">Try an example</p>
     <div class="demo__example-list">
       <button type="button" data-query="For Apple, what is the total sum of all recorded debt refinancing transaction amounts?">
-        <span>01</span> Apple refinancing total
+        <span>01</span> For Apple, what is the total sum of all recorded debt refinancing transaction amounts?
+      </button>
+      <button type="button" data-query="What is Nvidia's total debt raised to date?">
+        <span>02</span> What is Nvidia's total debt raised to date?
       </button>
       <button type="button" data-query="What is Nvidia's average debt raised to date?">
-        <span>02</span> Nvidia debt average
+        <span>03</span> What is Nvidia's average debt raised to date?
+      </button>
+      <button type="button" data-query="What is Nvidia's total equity financing transaction amount?">
+        <span>04</span> What is Nvidia's total equity financing transaction amount?
       </button>
       <button type="button" data-query="What is Nvidia's IPO amount?">
-        <span>03</span> Nvidia IPO amount
+        <span>05</span> What is Nvidia's IPO amount?
       </button>
     </div>
   </div>
