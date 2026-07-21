@@ -1,6 +1,6 @@
 ---
 layout: archive
-title: "CollarAI Demo"
+title: "PB Demo"
 permalink: /demo/
 author_profile: false
 demo: true
@@ -8,11 +8,6 @@ mathjax: true
 ---
 
 <section class="demo" data-collarai-demo data-api-url="{{ site.collarai_api_url | default: '' }}">
-  <header class="demo__intro">
-    <p class="demo__eyebrow">Browser research / PitchBook</p>
-    <p>Ask one complete company-financing question. CollarAI translates it into a typed workflow, navigates the authenticated research surface, and returns an evidence-backed calculation.</p>
-  </header>
-
   <form class="demo__form" id="collarai-query-form" novalidate>
     <label for="collarai-query">Research question</label>
     <textarea id="collarai-query" name="query" rows="4" maxlength="500" placeholder="What is Nvidia's average debt raised to date?" required></textarea>

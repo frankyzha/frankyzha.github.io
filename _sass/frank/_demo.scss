@@ -3,57 +3,32 @@
   max-width: none;
   float: none;
   margin: 0 auto 7rem;
-  padding-top: clamp(2.5rem, 6vw, 5rem);
+  padding-top: clamp(2rem, 4vw, 3.5rem);
 }
 
 .archive--demo > .page__title {
   max-width: 760px;
-  margin: 0 0 1.5rem;
+  margin: 0 0 1.25rem;
   font-family: "Gill Sans", "Avenir Next", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: clamp(3.25rem, 8vw, 6.5rem);
+  font-size: clamp(2rem, 5vw, 2.75rem);
   font-weight: 600;
-  letter-spacing: -0.06em;
-  line-height: 0.9;
+  letter-spacing: -0.04em;
+  line-height: 1;
 }
 
 .demo {
   color: var(--frank-ink);
 }
 
-.demo__intro {
-  display: grid;
-  grid-template-columns: 180px minmax(0, 1fr);
-  gap: clamp(1.5rem, 5vw, 4rem);
-  margin-bottom: clamp(2.5rem, 6vw, 4rem);
-  padding-top: 1.25rem;
-  border-top: 2px solid var(--frank-rule);
-
-  p {
-    margin: 0;
-  }
-
-  > p:last-child {
-    max-width: 650px;
-    font-size: clamp(1rem, 1.8vw, 1.2rem);
-    letter-spacing: -0.015em;
-    line-height: 1.5;
-  }
-}
-
-.demo__eyebrow,
 .demo__form > label,
 .demo__examples > p,
 .demo__result > header,
 .demo__footnote > span {
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 10px;
+  font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-}
-
-.demo__eyebrow {
-  color: var(--frank-muted);
 }
 
 .demo__form {
@@ -78,9 +53,9 @@
     border-radius: 0;
     outline: 0;
     font: inherit;
-    font-size: clamp(1.1rem, 2.3vw, 1.45rem);
-    letter-spacing: -0.025em;
-    line-height: 1.4;
+    font-size: 1rem;
+    letter-spacing: -0.01em;
+    line-height: 1.5;
 
     &::placeholder {
       color: var(--frank-muted);
@@ -104,7 +79,7 @@
     margin: 0;
     padding: 0.75rem 0.85rem;
     color: var(--frank-muted);
-    font-size: 11px;
+    font-size: 0.8rem;
   }
 
   button {
@@ -116,7 +91,7 @@
     border-left: 1px solid var(--frank-rule);
     border-radius: 0;
     font: inherit;
-    font-size: 12px;
+    font-size: 0.8rem;
     font-weight: 700;
     letter-spacing: 0.04em;
     text-transform: uppercase;
@@ -150,7 +125,7 @@
   label,
   span {
     font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-    font-size: 9px;
+    font-size: 0.75rem;
     letter-spacing: 0.05em;
     text-transform: uppercase;
   }
@@ -167,7 +142,7 @@
     border: 1px solid var(--frank-rule);
     border-radius: 0;
     font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-    font-size: 12px;
+    font-size: 0.85rem;
   }
 }
 
@@ -180,7 +155,7 @@
 
   span {
     font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-    font-size: 10px;
+    font-size: 0.75rem;
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -189,7 +164,7 @@
   p {
     margin: 0;
     color: var(--frank-muted);
-    font-size: 12px;
+    font-size: 0.8rem;
   }
 
   &[data-state="error"] span,
@@ -226,7 +201,7 @@
     border-bottom: 1px solid var(--frank-soft-rule);
     border-radius: 0;
     font: inherit;
-    font-size: 13px;
+    font-size: 0.9rem;
     text-align: left;
     cursor: pointer;
 
@@ -238,7 +213,7 @@
     span {
       color: var(--frank-muted);
       font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-      font-size: 9px;
+      font-size: 0.75rem;
     }
   }
 }
@@ -261,9 +236,9 @@
   h2 {
     margin: 0 0 1.25rem;
     color: var(--frank-ink);
-    font-size: clamp(1.8rem, 4vw, 2.6rem);
-    letter-spacing: -0.045em;
-    line-height: 1;
+    font-size: 1.25rem;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
   }
 
   p {
@@ -274,7 +249,7 @@
     width: 100%;
     margin: 1.5rem 0;
     border-collapse: collapse;
-    font-size: 13px;
+    font-size: 0.85rem;
   }
 
   th,
@@ -288,7 +263,7 @@
     color: var(--frank-paper);
     background: var(--frank-ink);
     font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-    font-size: 9px;
+    font-size: 0.75rem;
     letter-spacing: 0.06em;
     text-transform: uppercase;
   }
@@ -318,7 +293,7 @@
     max-width: 650px;
     margin: 0;
     color: var(--frank-muted);
-    font-size: 12px;
+    font-size: 0.8rem;
   }
 }
 
@@ -327,7 +302,6 @@
     padding-top: 2rem;
   }
 
-  .demo__intro,
   .demo__examples,
   .demo__footnote {
     grid-template-columns: 1fr;
