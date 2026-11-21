@@ -95,7 +95,7 @@ test("theme toggle applies and persists the selected theme", () => {
     getItem: (key) => storage.get(key) ?? null,
     setItem: (key, value) => storage.set(key, value)
   };
-  const window = { matchMedia: () => new MediaQueryStub(false) };
+  const window = { matchMedia: () => new MediaQueryStub(true) };
 
   runInNewContext(readFileSync("assets/js/theme-toggle.js", "utf8"), {
     CustomEvent,

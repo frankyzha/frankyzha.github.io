@@ -37,19 +37,14 @@
     }
   }
 
-  .landing__identity,
+  .landing__research,
   .landing__right {
     grid-column: 1;
     grid-row: auto;
   }
 
-  .landing__identity {
-    min-height: 62svh;
-    padding: 5rem 0 4rem;
-
-    h1 {
-      font-size: clamp(4.7rem, 23vw, 8rem);
-    }
+  .landing__research {
+    padding: 2rem 0 3rem;
   }
 
   .landing__pitch {
@@ -102,15 +97,6 @@
 }
 
 @media (max-width: $frank-small) {
-  .landing__identity {
-    min-height: 56svh;
-    padding-top: 4rem;
-
-    h1 {
-      font-size: clamp(4.2rem, 23vw, 6.5rem);
-    }
-  }
-
   .landing__links {
     grid-template-columns: 1fr;
 

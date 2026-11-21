@@ -29,36 +29,32 @@
   }
 }
 
-.landing__identity {
-  display: flex;
+.landing__research {
   grid-column: 1;
   grid-row: 1;
   align-self: center;
-  flex-direction: column;
-  justify-content: center;
-  padding: 0 clamp(2rem, 5vw, 5rem) 0 0;
+  padding: 2rem clamp(2rem, 5vw, 5rem) 2rem 0;
 
-  h1 {
+  p {
     margin: 0;
     color: var(--frank-ink);
-    font-family: "Gill Sans", "Avenir Next", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: clamp(4.9rem, 10.2vw, 9rem);
-    font-weight: 600;
-    letter-spacing: -0.045em;
-    line-height: 0.86;
+    font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+    line-height: 1.65;
 
-    span {
-      display: block;
+    + p {
+      margin-top: 1.4rem;
     }
   }
 
-  p {
-    margin: clamp(1.75rem, 4vh, 2.75rem) 0 0 0.12em;
+  a {
     color: var(--frank-ink);
-    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-    font-size: clamp(0.9rem, 1.35vw, 1.15rem);
     font-weight: 700;
-    letter-spacing: 0.08em;
+    text-decoration-thickness: 1px;
+
+    &:hover,
+    &:focus-visible {
+      text-decoration-thickness: 2px;
+    }
   }
 }
 
