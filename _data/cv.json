@@ -205,17 +205,17 @@
   "references": [],
   "publications": [
     {
-      "name": "Lazy Grounding: When Search Agents Misapply True Evidence",
-      "publisher": "Submitted to EMNLP 2026",
+      "name": "Lazy Grounding: Attacking Search Agents with Factual Evidence",
+      "publisher": "EMNLP 2026",
       "releaseDate": "2026",
-      "website": "",
+      "website": "https://arxiv.org/pdf/2608.30303",
       "summary": "Zhang, Y.; Huang, Y.; Chen, S.; Lin, T.; Yang, Z.; Yin, X.; Dhingra, B."
     },
     {
       "name": "Interpretable Multiway-Split Trees",
-      "publisher": "Submitted to NeurIPS 2026",
+      "publisher": "NeurIPS 2026",
       "releaseDate": "2026",
-      "website": "",
+      "website": "https://drive.google.com/file/d/174tbuSj7aHri2mQhUkjewoykkSEpWMf8/view?usp=sharing",
       "summary": "Chi, B.*; Zhang, Y.*; Zhong, C.; Rudin, C. *Equal contribution."
     },
     {
@@ -226,11 +226,11 @@
       "summary": "Zhang, Y.; Sun, Y."
     },
     {
-      "name": "Rebuilding a Balanced Dataset of Removed and Non-Removed Android Apps Using VirusTotal and Quark Features",
-      "publisher": "Submitted",
-      "releaseDate": "",
-      "website": "",
-      "summary": "Mohsen, Fadi; Zhang, Y.; Bisgin, H.; Buchta, K."
+      "name": "Validated and enriched Android application dataset: integration of VirusTotal and Quark-Engine intelligence",
+      "publisher": "Data in Brief",
+      "releaseDate": "2026",
+      "website": "https://doi.org/10.1016/j.dib.2026.113152",
+      "summary": "Mohsen, F.; Zhang, Y.; Gültekin, A. M.; Bisgin, H.; Buchta, K."
     },
     {
       "name": "Beyond XGBoost: Predicting App Longevity in Google Play with ExcelFormer and Trompt",
