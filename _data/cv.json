@@ -233,11 +233,11 @@
       "summary": "Mohsen, F.; Zhang, Y.; Gültekin, A. M.; Bisgin, H.; Buchta, K."
     },
     {
-      "name": "Beyond XGBoost: Predicting App Longevity in Google Play with ExcelFormer and Trompt",
-      "publisher": "",
-      "releaseDate": "",
-      "website": "",
-      "summary": "Bisgin, H.; Buchta, K.; Zhang, Y.; Mohsen, Fadi."
+      "name": "Revisiting early detection of violating android applications: Multi-source dataset validation and feature enrichment",
+      "publisher": "Array",
+      "releaseDate": "2026",
+      "website": "https://www.sciencedirect.com/science/article/pii/S2590005626006399",
+      "summary": "Mohsen, F.; Zhang, Y.; Gultekin, A. M.; Bisgin, H.; Buchta, K."
     }
   ],
   "presentations": [],

@@ -3,7 +3,7 @@ title: "Revisiting early detection of violating android applications: Multi-sour
 collection: publications
 category: manuscripts
 permalink: /publication/android-app-detection
-priority: 6
+priority: 3
 excerpt: "A study of how label validation and feature enrichment affect Google Play app removal prediction."
 date: 2026-10-09
 venue: "Array"
