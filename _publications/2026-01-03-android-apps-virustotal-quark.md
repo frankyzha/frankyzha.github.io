@@ -1,13 +1,15 @@
 ---
-title: "Rebuilding a Balanced Dataset of Removed and Non-Removed Android Apps Using VirusTotal and Quark Features"
+title: "Validated and enriched Android application dataset: integration of VirusTotal and Quark-Engine intelligence"
 collection: publications
 category: manuscripts
 permalink: /publication/android-apps-virustotal-quark
 priority: 4
-excerpt: "A submitted Android app security study using VirusTotal and Quark features."
-date: 2026-01-03
-status: "Submitted"
-citation: "Mohsen, Fadi; Zhang, Y.; Bisgin, H.; Buchta, K. &quot;Rebuilding a Balanced Dataset of Removed and Non-Removed Android Apps Using VirusTotal and Quark Features.&quot; Submitted."
+excerpt: "A Google Play app dataset enriched with VirusTotal and Quark-Engine analysis."
+date: 2026-08-11
+venue: "Data in Brief"
+status: "Published"
+paperurl: "https://doi.org/10.1016/j.dib.2026.113152"
+citation: "Mohsen, F.; Zhang, Y.; Gültekin, A. M.; Bisgin, H.; Buchta, K. &quot;Validated and enriched Android application dataset: integration of VirusTotal and Quark-Engine intelligence.&quot; Data in Brief, vol. 68, 113152, 2026."
 ---
 
-This project studies secure Android app use by rebuilding and validating datasets of removed and non-removed apps with VirusTotal and Quark-Engine scan analysis results.
+This data article documents a Google Play app dataset enriched with VirusTotal and Quark-Engine analysis. The release includes processed data and subsets validated at several levels of agreement between sources.
