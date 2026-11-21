@@ -9,7 +9,7 @@ date: 2026-01-02
 venue: "NeurIPS 2026"
 status: "Submitted"
 preprint: true
-paperurl: "https://drive.google.com/file/d/140PsCpGq5EQmAwIojmezMdqXTU_ZBgXj/view?usp=sharing"
+paperurl: "https://drive.google.com/file/d/174tbuSj7aHri2mQhUkjewoykkSEpWMf8/view?usp=sharing"
 citation: "Chi, B.*; Zhang, Y.*; Zhong, C.; Rudin, C. &quot;Interpretable Multiway-Split Trees.&quot; Submitted to NeurIPS 2026. *Equal contribution."
 ---
 
