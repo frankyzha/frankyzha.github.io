@@ -150,4 +150,20 @@
       font-size: 10px;
     }
   }
+
+  .landing__publications {
+    color: var(--frank-paper);
+    background: var(--frank-ink);
+    font-weight: 700;
+
+    span {
+      color: inherit;
+    }
+
+    &:hover,
+    &:focus-visible {
+      color: var(--frank-ink);
+      background: var(--frank-paper);
+    }
+  }
 }

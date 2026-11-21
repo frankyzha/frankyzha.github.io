@@ -54,10 +54,15 @@
 }
 
 .publication-list__status {
-  flex: 0 0 auto;
+  flex: 0 1 auto;
+  max-width: 16rem;
   margin: 0;
-  color: var(--frank-muted);
-  white-space: nowrap;
+  padding: 0.4rem 0.6rem;
+  color: var(--frank-paper);
+  background: var(--frank-ink);
+  font-size: 0.85rem;
+  line-height: 1.35;
+  white-space: normal;
 }
 
 .publication-list__citation {
@@ -98,7 +103,7 @@
   }
 
   .publication-list__status {
+    display: inline-block;
     margin-top: 0.45rem;
-    white-space: normal;
   }
 }
