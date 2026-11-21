@@ -10,9 +10,9 @@ redirect_from:
 
 <section class="landing" aria-label="Research and projects">
   <div class="landing__research">
-    <p>Explore my <a href="/publications/?v={{ site.github.build_revision | default: site.time | url_encode }}">publications</a>. At DukeNLP, I studied <a href="https://arxiv.org/pdf/2608.30303">AI search agent safety</a> (EMNLP 2026), and at the Interpretable ML Lab, I worked on <a href="https://drive.google.com/file/d/174tbuSj7aHri2mQhUkjewoykkSEpWMf8/view?usp=sharing">accurate, efficient, interpretable multiway-split decision trees</a> (NeurIPS 2026). I am a co-first author on both papers.</p>
-    <p>Previously, I worked on <a href="https://www.sciencedirect.com/science/article/pii/S2590005626006399">machine learning for Android app security</a> (Array 2026) and <a href="https://doi.org/10.1016/j.dib.2026.113152">dataset curation</a> (Data in Brief). In high school, I published <a href="https://doi.org/10.5121/csit.2023.130209">an NLP algorithm</a> that powers a Chrome extension with about 3,000 users at the 9th International Conference on Software Engineering.</p>
-    <p>Most recently, my cofounder Sean and I built <a href="https://omnimarket.xyz/">Omnimarket</a>, a decentralized prediction market where anyone, including AI agents, can create markets.</p>
+    <p>Explore my <a class="landing__publications-link" href="/publications/?v={{ site.github.build_revision | default: site.time | url_encode }}">publications</a> with links! I co-first-authored papers on <a href="https://arxiv.org/pdf/2608.30303">AI search agent safety</a> at DukeNLP (EMNLP 2026) and <a href="https://drive.google.com/file/d/174tbuSj7aHri2mQhUkjewoykkSEpWMf8/view?usp=sharing">interpretable multiway-split decision trees</a> at the Interpretable ML Lab (NeurIPS 2026).</p>
+    <p>I also worked on <a href="https://www.sciencedirect.com/science/article/pii/S2590005626006399">Android app security</a> (Array 2026) and <a href="https://doi.org/10.1016/j.dib.2026.113152">dataset curation</a> (Data in Brief). In high school, I published an <a href="https://doi.org/10.5121/csit.2023.130209">NLP algorithm</a> (SOFE 2023) powering a Chrome extension with about 3K users.</p>
+    <p>Recently, my cofounder Sean and I built <a href="https://omnimarket.xyz/">Omnimarket</a>, a decentralized prediction market where anyone, including AI agents, can create markets.</p>
   </div>
 
   <div class="landing__right">

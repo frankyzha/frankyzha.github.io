@@ -13,6 +13,7 @@
 }
 
 .landing {
+  --landing-link: #0056b3;
   display: grid;
   min-height: calc(100svh - 9rem);
   align-content: center;
@@ -27,6 +28,11 @@
     content: "";
     pointer-events: none;
   }
+}
+
+html[data-theme="dark"] .landing,
+html:has(#color-theme-toggle:checked) .landing {
+  --landing-link: #8cbcff;
 }
 
 .landing__research {
@@ -47,7 +53,7 @@
   }
 
   a {
-    color: var(--frank-ink);
+    color: var(--landing-link) !important;
     font-weight: 700;
     text-decoration-thickness: 1px;
 
@@ -55,6 +61,10 @@
     &:focus-visible {
       text-decoration-thickness: 2px;
     }
+  }
+
+  .landing__publications-link {
+    color: var(--frank-ink) !important;
   }
 }
 
@@ -160,6 +170,15 @@
     &:focus-visible {
       color: var(--frank-ink);
       background: var(--frank-paper);
+    }
+  }
+
+  a:not(.landing__publications) {
+    color: var(--landing-link);
+
+    &:hover,
+    &:focus-visible {
+      color: var(--frank-paper);
     }
   }
 }
