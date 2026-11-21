@@ -132,7 +132,8 @@ html:has(#color-theme-toggle:checked) .landing {
     align-items: center;
     gap: 0.7rem;
     padding: 0.8rem 0.9rem;
-    color: var(--frank-ink);
+    color: #0c1b31;
+    background: #bfdaff;
     border-top: 1px solid var(--frank-rule);
     text-decoration: none;
     text-transform: uppercase;
@@ -141,13 +142,14 @@ html:has(#color-theme-toggle:checked) .landing {
       border-right: 1px solid var(--frank-rule);
     }
 
-    &:hover {
-      color: var(--frank-paper);
-      background: var(--frank-ink);
+    &:hover,
+    &:focus-visible {
+      color: #0c1b31;
+      background: #9ec7ff;
     }
 
     span {
-      color: var(--frank-muted);
+      color: inherit;
       font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
       font-size: 8px;
     }
@@ -158,27 +160,6 @@ html:has(#color-theme-toggle:checked) .landing {
   }
 
   .landing__publications {
-    color: var(--frank-paper);
-    background: var(--frank-ink);
     font-weight: 700;
-
-    span {
-      color: inherit;
-    }
-
-    &:hover,
-    &:focus-visible {
-      color: var(--frank-ink);
-      background: var(--frank-paper);
-    }
-  }
-
-  a:not(.landing__publications) {
-    color: var(--landing-link);
-
-    &:hover,
-    &:focus-visible {
-      color: var(--frank-paper);
-    }
   }
 }
