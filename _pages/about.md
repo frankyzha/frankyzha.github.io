@@ -26,7 +26,7 @@ redirect_from:
     <nav class="landing__links" aria-label="Featured links">
       <a class="landing__publications" href="/publications/?v={{ site.github.build_revision | default: site.time | url_encode }}"><span>01</span>Publications <b aria-hidden="true">↗</b></a>
       <a href="/blog/?v={{ site.github.build_revision | default: site.time | url_encode }}"><span>02</span>Blog <b aria-hidden="true">↗</b></a>
-      <a href="/cv/?v={{ site.github.build_revision | default: site.time | url_encode }}"><span>03</span>CV <b aria-hidden="true">↗</b></a>
+      <a href="/resume/?v={{ site.github.build_revision | default: site.time | url_encode }}"><span>03</span>Resume <b aria-hidden="true">↗</b></a>
       <a href="mailto:frank.zhang@duke.edu"><span>04</span>Email <b aria-hidden="true">↗</b></a>
     </nav>
   </div>

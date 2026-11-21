@@ -17,8 +17,8 @@ main:
   - title: "Blog"
     url: /blog/
     
-  - title: "CV"
-    url: /cv/
+  - title: "Resume"
+    url: /resume/
 
   - title: "Contact"
     url: /contact/
